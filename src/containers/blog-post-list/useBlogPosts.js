@@ -3,6 +3,23 @@ import { useStaticQuery, graphql } from 'gatsby';
 const useBlogPosts = () => {
   const data = useStaticQuery(
     graphql`
+      query{
+        allContentfulWork{
+          edges{
+            node{
+              title
+            }
+          }
+        }
+      }
+    `
+  );
+  return data;
+};
+
+export default useBlogPosts;
+
+/*
       query {
         allContentfulBlogPost(sort: { order: DESC, fields: publishDate }) {
           edges {
@@ -26,9 +43,4 @@ const useBlogPosts = () => {
           }
         }
       }
-    `
-  );
-  return data;
-};
-
-export default useBlogPosts;
+*/

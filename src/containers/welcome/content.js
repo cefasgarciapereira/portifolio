@@ -1,7 +1,7 @@
 const content = {
-  tagline: 'Kick off your project using',
-  title: 'Gatsby Starter.',
-  subtitle: 'Featuring Redux, Material UI, Contentful & other stuff!',
+  tagline: 'Olá! Meu nome é',
+  title: "Cefas Garcia Pereira",
+  subtitle: 'Sou desenvolvedor web e mobile.',
 };
 
 export default content;

@@ -16,12 +16,9 @@ const BlogPost = ({ classes, data }: Props) => (
     <Typography variant='h2' color='textPrimary'>
       {data.title}
     </Typography>
-    <Typography
-      variant='body1'
-      dangerouslySetInnerHTML={{
-        __html: data.body.childMarkdownRemark.html,
-      }}
-    />
+    <Typography style={{marginTop: 10}}>
+      {data.body.json.content[0].content[0].value}  
+    </Typography>
   </div>
 );
 

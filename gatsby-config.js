@@ -4,9 +4,9 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter`,
-    description: `Gatsby Starter`,
-    author: `Polychronis Papadakis`,
+    title: `Cefas`,
+    description: `Cefas é graduado em Ciência da Computação e atualmente está cursando Mestrado em Engenharia de Software. O foco da sua pesquisa gira em torno da análise de tópicos e comportamento de usuários em redes sociais. Também atuou em trabalhos de design emocional aplicado à computação. Além da vida acadêmica, dedica seu tempo atuando como desenvolvedor, sobretudo em Javascript (React, ReactNative e Node.Js). Atuou como desenvolvedor em empresas, freelancer e também lecionou cursos na área da computação. Habilidades: Desgin, Front-End, Desenvolvimeto, Pesquisa, Aula. `,
+    author: `Cefas Garcia Pereira`,
   },
   plugins: [
     `gatsby-plugin-flow`,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import { BlogPost } from 'components';
 
@@ -11,11 +12,34 @@ type Props = {
 };
 
 const BlogPostList = ({ classes }: Props) => {
-  const { allContentfulBlogPost } = useBlogPosts();
+  
+  const allContentfulBlogPost = useStaticQuery(
+    graphql`
+      query{
+        allContentfulWork{
+          edges{
+            node{
+              title,
+              body{
+                json
+              },
+              heroImage{
+                fluid(maxWidth: 960) {
+                  ...GatsbyContentfulFluid_withWebp
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+  console.log(allContentfulBlogPost)
 
   return (
     <div className={classes.container}>
-      {allContentfulBlogPost.edges.map(({ node }, index) => (
+      {allContentfulBlogPost.allContentfulWork.edges.map(({ node }, index) => (
         <BlogPost key={index} data={node} />
       ))}
     </div>

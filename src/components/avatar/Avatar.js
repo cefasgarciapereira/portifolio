@@ -1,6 +1,7 @@
 import React from 'react';
 import avatarIcon from 'images/website-icon.png';
 import { withStyles } from '@material-ui/styles';
+import { FaRegGrinWink } from "react-icons/fa";
 
 import styles from './style';
 
@@ -9,9 +10,11 @@ type Props = {
 };
 
 const Avatar = ({ classes }: Props) => (
-  <div className={classes.container}>
-    <img src={avatarIcon} className={classes.avatar} alt='avatar' />
-  </div>
+  <FaRegGrinWink color='#000' size={24}/>
 );
 
 export default withStyles(styles)(Avatar);
+
+/*
+    <img src={avatarIcon} className={classes.avatar} alt='avatar' />
+*/
