@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Avatar = ({ classes }: Props) => (
-  <FaRegGrinWink color='#000' size={24}/>
+  <h3 style={{textDecoration:'none', color:'#000'}}>{`<cefas/>`}</h3>
 );
 
 export default withStyles(styles)(Avatar);
