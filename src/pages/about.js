@@ -5,7 +5,7 @@ import { About } from 'containers';
 
 const AboutPage = () => (
   <Layout>
-    <SEO title='About' />
+    <SEO title='Sobre' />
     <About />
   </Layout>
 );

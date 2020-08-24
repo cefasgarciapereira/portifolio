@@ -5,7 +5,7 @@ import { BlogPostList } from 'containers';
 
 const BlogPage = () => (
   <Layout noBackground>
-    <SEO title='Blog' />
+    <SEO title='Experiencias' />
     <BlogPostList />
   </Layout>
 );
