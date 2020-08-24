@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin,FaFileDownload } from 'react-icons/fa';
-
+const CV = require('../../../curriculo.pdf')
 const content = {
   title: 'Sobre.',
   subtitle: "Sou graduado em Ciências da Computação e atualmente estou cursando Mestrado em Engenharia de Software. O foco da minha pesquisa gira em torno da análise de tópicos e comportamento de usuários em redes sociais. Também atuei em trabalhos de design emocional aplicado à computação. Além da minha vida acadêmica, dedico meu tempo atuando como desenvolvedor, sobretudo em Javascript (React, ReactNative e Node.Js). Atuei como desenvolvedor em empresas, freelancer e também lecionei cursos na área da computação.",
@@ -17,9 +17,10 @@ const content = {
       newTab: true,
     },
     {
-      to: 'https://www.overleaf.com/download/project/5dc1cbcbf56e340001f39a33/build/17419d63258-89b2dd136728246e/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-n1-c-hxr5&popupDownload=true',
+      to: CV,
       text: 'CV',
       Icon: FaFileDownload,
+      newTab: true,
     }
   ],
 };
