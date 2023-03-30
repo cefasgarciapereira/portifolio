@@ -1,0 +1,146 @@
+.link{
+    text-decoration: none;
+    font-weight: bold;
+    color:var(--primary);
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 1px;
+    cursor: pointer;
+}
+
+.link--simple{
+    text-decoration: none;
+    font-weight: 400;
+    color:var(--font-color);
+    border-bottom: 1px solid var(--font-color);
+    line-height: 2;
+}
+
+.link--simple:hover, .link:hover{
+    border: none;
+    border-bottom: 1px solid transparent;
+    transition: .4s !important;
+}
+
+.flex{
+    display: flex;
+}
+
+.container{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.name{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.role{
+    display: block;
+    font-weight: 400;
+}
+
+.mt-2{
+    margin-top: 2rem;
+}
+
+.experiences{
+    margin-top: 2.5rem;
+}
+
+.experience-cover{
+    display: block;
+    width: 100%;
+    aspect-ratio: 12/13;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.experience-content{
+    margin: 2.5rem 0 5rem;
+}
+
+.experience-content p{
+    margin: 0;
+    line-height: 1.4;
+    opacity: .5;
+}
+
+.experiences .experience:nth-child(odd){
+    text-align: right;
+}
+
+.available{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer{
+    padding: 2.5rem 0 0 0;
+    opacity: .5;
+}
+
+.logo{
+    margin-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+    *, .name{
+        font-size: 18px;
+    }
+    .container{
+        padding: 0 80px;
+    }
+
+    .logo{
+        margin-top: 7.5rem;
+    }
+
+    .experience{
+        width: 75%;
+    }
+
+    .experiences .experience:nth-child(odd){
+        float: right;
+        right: 0;
+    }
+
+    .footer{
+        padding: 2.5rem 0;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .experience{
+        width: 50%;
+    }
+
+    .experience-cover{
+        max-width: 480px;
+        width: calc(100% - 2.5rem);
+    }
+
+    .experiences .experience:nth-child(odd) .experience-cover{
+        margin-left: 2.5rem;
+    }
+
+    .experiences .experience:nth-child(even){
+        padding-top: 40%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .introduction{
+        max-width: 600px;
+        line-height: 2;
+    }
+
+    .conclusion{
+        max-width: 800px;
+        line-height: 2;
+    }
+}

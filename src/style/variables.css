@@ -1,0 +1,24 @@
+:root {
+  --black: #000;
+  --white: #FFF;
+  --pink: #F8A4FF;
+  --blue: #001aff;
+  --yellow: #EFFF44;
+}
+
+.theme-dark{
+  --font-color: var(--white);
+  --primary: var(--pink);
+
+  color: var(--font-color);
+  background-color: var(--black);
+  
+}
+
+.theme-light{
+  --font-color: var(--black);
+  --primary: var(--blue);
+  
+  color: var(--font-color);
+  background-color: var(--white);
+}
