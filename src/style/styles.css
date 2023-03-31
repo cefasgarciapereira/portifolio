@@ -1,145 +1,157 @@
-.link{
+.link {
     text-decoration: none;
     font-weight: bold;
-    color:var(--primary);
+    color: var(--primary);
     border-bottom: 1px solid var(--primary);
     padding-bottom: 1px;
     cursor: pointer;
 }
 
-.link--simple{
+.link--simple {
     text-decoration: none;
     font-weight: 400;
-    color:var(--font-color);
+    color: var(--font-color);
     border-bottom: 1px solid var(--font-color);
     line-height: 2;
 }
 
-.link--simple:hover, .link:hover{
+.link--simple:hover,
+.link:hover {
     border: none;
     border-bottom: 1px solid transparent;
     transition: .4s !important;
 }
 
-.flex{
+.flex {
     display: flex;
 }
 
-.container{
+.container {
     max-width: 1040px;
     margin: 0 auto;
     padding: 0 40px;
 }
 
-.name{
+.name {
     font-size: 16px;
     font-weight: bold;
 }
 
-.role{
+.role {
     display: block;
     font-weight: 400;
 }
 
-.mt-2{
+.mt-2 {
     margin-top: 2rem;
 }
 
-.experiences{
+.experiences {
     margin-top: 2.5rem;
 }
 
-.experience-cover{
+.experience-cover {
     display: block;
     width: 100%;
     aspect-ratio: 12/13;
     border-radius: 8px;
     object-fit: cover;
+    cursor: pointer;
 }
 
-.experience-content{
+.experience-cover img,
+.experience-cover video {
+    border-radius: 8px;
+}
+
+.experience-content {
     margin: 2.5rem 0 5rem;
 }
 
-.experience-content p{
+.experience-content p {
     margin: 0;
     line-height: 1.4;
     opacity: .5;
 }
 
-.experiences .experience:nth-child(odd){
+.experiences .experience:nth-child(odd) {
     text-align: right;
 }
 
-.available{
+.available {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
 }
 
-.footer{
+.footer {
     padding: 2.5rem 0 0 0;
     opacity: .5;
 }
 
-.logo{
+.logo {
     margin-top: 2.5rem;
     padding-bottom: 2.5rem;
 }
 
 @media only screen and (min-width: 768px) {
-    *, .name{
+
+    *,
+    .name {
         font-size: 18px;
     }
-    .container{
+
+    .container {
         padding: 0 80px;
     }
 
-    .logo{
+    .logo {
         margin-top: 7.5rem;
     }
 
-    .experience{
+    .experience {
         width: 75%;
     }
 
-    .experiences .experience:nth-child(odd){
+    .experiences .experience:nth-child(odd) {
         float: right;
-        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
     }
 
-    .footer{
+    .footer {
         padding: 2.5rem 0;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .experience{
+    .experience {
         width: 50%;
     }
 
-    .experience-cover{
-        max-width: 480px;
+    .experience-cover {
+        max-width: 600px;
         width: calc(100% - 2.5rem);
     }
 
-    .experiences .experience:nth-child(odd) .experience-cover{
+    .experiences .experience:nth-child(odd) .experience-cover {
         margin-left: 2.5rem;
     }
 
-    .experiences .experience:nth-child(even){
+    .experiences .experience:nth-child(even) {
         padding-top: 40%;
     }
 }
 
 @media only screen and (min-width: 1024px) {
-    .introduction{
+    .introduction {
         max-width: 600px;
         line-height: 2;
     }
 
-    .conclusion{
+    .conclusion {
         max-width: 800px;
         line-height: 2;
     }
