@@ -7,7 +7,7 @@ export default function Experience() {
 
     return (
         <Fragment>
-            <p className="mt-2">Conheça meus últimos trabalhos: tchais </p>
+            <p className="mt-2">Conheça meus últimos trabalhos:</p>
             <section className="experiences">
                 {
                     experiences.map((experience) => (

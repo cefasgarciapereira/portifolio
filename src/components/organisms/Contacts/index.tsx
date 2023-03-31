@@ -19,7 +19,7 @@ const contacts = [
 
 export default function Contacts() {
     return (
-        <ul>
+        <ul className="mt-2">
             {
                 contacts.map((contact, index) => (
                     <li>

@@ -1,18 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import Layout from './components/templates/Layout'
+import { IconContext } from "react-icons";
 
-import Home from './pages/Home'
+import Layout from "./components/templates/Layout";
 
-import './style/main.css'
-import "./style/styles.css"
-import "./style/variables.css"
+import Home from "./pages/Home";
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+import { LangueProvider } from "./contexts/language";
+
+import "./style/main.css";
+import "./style/styles.css";
+import "./style/variables.css";
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Layout>
-      <Home />
-    </Layout>
-  </React.StrictMode>,
-)
+    <LangueProvider>
+      <IconContext.Provider value={{ className: "react-icon" }}>
+        <Layout>
+          <Home />
+        </Layout>
+      </IconContext.Provider>
+    </LangueProvider>
+  </React.StrictMode>
+);
