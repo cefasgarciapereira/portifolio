@@ -23,16 +23,20 @@ export default function Home() {
                 <a className="link" href="mailto:cefasgarciapereira@gmail.com">Fale comigo!</a>
             </div>
             <Experience />
-            <p className="mt-2 conclusion">
-                {`Nos últimos anos, tive o prazer de colaborar em projetos de startups, pequenas 
+            <div>
+
+                <p className="mt-2 conclusion">
+                    {`Nos últimos anos, tive o prazer de colaborar em projetos de startups, pequenas 
                 e grandes empresas de diversos setores. Trabalhando para potencializar e refinar 
                 os negócios através da tecnologia.`}
-            </p>
-            <p className="conclusion">
-                Busco projetar soluções simples e eficazes, sem reiventar a roda.
-                Para isso utilizo ferramentas como prototipagem, desenvolvimento através de iterações e sempre me inspiro
-                em grandes nomes da área como: Uncle Bob, Peter Desmet, Don Norman e outros.
-            </p>
+                </p>
+                <p className="conclusion">
+                    Busco projetar soluções simples e eficazes, sem reiventar a roda.
+                    Para isso utilizo ferramentas como prototipagem, desenvolvimento através de iterações e sempre me inspiro
+                    em grandes nomes da área como: Uncle Bob, Peter Desmet, Don Norman e outros.
+                </p>
+
+            </div>
 
             <div className="available">
                 <p>
