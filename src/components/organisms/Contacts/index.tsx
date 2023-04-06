@@ -4,6 +4,10 @@ const contacts = [
         link: "https://www.linkedin.com/in/cefas-garcia-pereira"
     },
     {
+        label: "Medium",
+        link: "https://cefasgpereira.medium.com/"
+    },
+    {
         label: "Email",
         link: "mailto:cefasgarciapereira@gmail.com"
     },

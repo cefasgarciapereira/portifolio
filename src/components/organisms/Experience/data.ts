@@ -18,7 +18,7 @@ export interface Experience {
 export const experiences: Experience[] = [
     {
         company: "CI&T",
-        role: "Analista de Sistemas",
+        role: "System Analist",
         link: "https://ciandt.com/br/pt-br",
         image: airbnbLogo,
         video: ciandtVideo

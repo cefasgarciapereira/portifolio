@@ -1,13 +1,16 @@
 import { Fragment, useRef } from "react";
+import useTranslation from "../../../services/useTranslation";
 
 import { experiences } from "./data";
+import { content, ExperienceTranslation } from "./translation";
 
 export default function Experience() {
     const videoRef = useRef<any>()
+    const text = useTranslation({ content }) as ExperienceTranslation
 
     return (
         <Fragment>
-            <p className="mt-2">Conheça meus últimos trabalhos:</p>
+            <p className="mt-2">{text.knowMyLastJobs}</p>
             <section className="experiences">
                 {
                     experiences.map((experience) => (
