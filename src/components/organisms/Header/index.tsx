@@ -21,13 +21,13 @@ export default function Header() {
                 <meta property="og:url" content="https://cefas.me/" />
                 <meta property="og:title" content="Cefas Garcia Pereira | Software Engineer | M.Sc" />
                 <meta property="og:description" content="Crafting code, I engineer solutions with technical rigor and following the best practices." />
-                <meta property="og:image" content="public/cefas.png" />
+                <meta property="og:image" content="/public/cefas.png" />
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content="https://cefas.me/" />
                 <meta property="twitter:title" content="Cefas Garcia Pereira | Software Engineer | M.Sc" />
                 <meta property="twitter:description" content="Crafting code, I engineer solutions with technical rigor and following the best practices." />
-                <meta property="twitter:image" content="public/cefas.png" />
+                <meta property="twitter:image" content="/public/cefas.png" />
             </head>
             <header>
                 <div className="logo">
