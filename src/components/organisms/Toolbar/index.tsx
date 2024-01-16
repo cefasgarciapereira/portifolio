@@ -1,6 +1,6 @@
-import ThemeToggler from "../../atoms/ThemeToggler"
-import ContrastToggler from "../../atoms/ContrastToggler"
-import LanguageToggler from "../../atoms/LanguageToggler"
+import ThemeToggler from "../../organisms/ThemeToggler"
+import ContrastToggler from "../../organisms/ContrastToggler"
+import LanguageToggler from "../../organisms/LanguageToggler"
 
 export default function Toolbar() {
     return (
