@@ -164,18 +164,32 @@
     width: 100%;
 }
 
+.post-card h4{
+    margin-bottom: 0;
+}
+
+.post-card h4 a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .post-card_tag{
     background-color: var(--font-color);
     color: var(--background-color);
     margin: 0 .2rem .2rem 0;
     padding: .1rem;
     width: 100%;
+    font-size: .8rem;
 }
 
-.post-card_footer{
+.post-card_data{
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    font-size: .8rem;
+}
+
+.post-card_data span{
+    margin: 0 .5rem 0 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -218,6 +232,10 @@
     .experiences .experience:nth-child(2) {
         margin: 0;
         margin-top: 40%;
+    }
+
+    .post-card{
+        margin: 2.5rem 0;
     }
 }
 

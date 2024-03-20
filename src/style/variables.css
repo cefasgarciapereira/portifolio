@@ -4,11 +4,13 @@
   --pink: #D33B80;
   --blue: #001aff;
   --yellow: #EFFF44;
+  --dark-blue: #060235;
 }
 
 .theme-dark{
   --font-color: var(--white);
   --primary: var(--yellow);
+  --background-color: var(--black);
 
   color: var(--font-color);
   background-color: var(--black);
@@ -17,6 +19,7 @@
 .theme-light{
   --font-color: var(--black);
   --primary: var(--blue);
+  --background-color: var(--white);
   
   color: var(--font-color);
   background-color: var(--white);
@@ -25,7 +28,8 @@
 .theme-contrast{
   --font-color: #F9AD00;
   --primary: #E01574;
+  --background-color: var(--dark-blue);
 
   color: var(--font-color);
-  background-color:#060235;
+  background-color: var(--dark-blue);
 }

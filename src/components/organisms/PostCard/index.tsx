@@ -1,4 +1,7 @@
-interface PostCardProps{
+import useTranslation from "../../../services/useTranslation"
+import { PostCardTranslation, content } from "./translation"
+
+interface PostCardProps {
     author: string
     categories: Array<string>
     content: string
@@ -12,29 +15,33 @@ interface PostCardProps{
 }
 
 const PostCard = (props: PostCardProps) => {
-    return(
+    const text = useTranslation({ content }) as PostCardTranslation
+
+    return (
         <div className="post-card">
-            <h4>{props.title}</h4>
-            <div>
-                {props.categories?.map((category, idx) => 
-                <span key={`${category}-${idx}`} className="post-card_tag">
-                    {category}
-                </span>
-                )}
-            </div>
-            <div className="post-card_footer">
-                <span>{`${handleReadTime(props.content)} min`}</span>
+            <h4>
+                <a href={props.link} target="_blank">{props.title}</a>
+            </h4>
+            <div className="post-card_data">
+                <span>{`${handleReadTime(props.content)} min `}{text.read}</span>
                 <span>{handlePubDate(props.pubDate)}</span>
+            </div>
+            <div>
+                {props.categories?.map((category, idx) =>
+                    <span key={`${category}-${idx}`} className="post-card_tag">
+                        {category}
+                    </span>
+                )}
             </div>
         </div>
     )
 }
 
-function handlePubDate(date: string): string{
+function handlePubDate(date: string): string {
     return date.split(" ")[0]
 }
 
-function handleReadTime(content: string): Number{
+function handleReadTime(content: string): Number {
     return Number((content.length / 1800).toFixed())
 }
 
