@@ -6,6 +6,7 @@ import { IconContext } from "react-icons";
 import Layout from "./components/templates/Layout";
 
 import Home from "./pages/Home";
+import Blog from "./pages/Blog";
 
 import { LangueProvider } from "./contexts/language";
 
@@ -18,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <LangueProvider>
       <IconContext.Provider value={{ className: "react-icon" }}>
         <Layout>
-          <Home />
+          <Blog />
         </Layout>
       </IconContext.Provider>
     </LangueProvider>

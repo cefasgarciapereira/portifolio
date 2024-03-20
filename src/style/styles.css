@@ -158,6 +158,26 @@
     margin: 1rem 0 2.5rem 0;
 }
 
+.post-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.post-card_tag{
+    background-color: var(--font-color);
+    color: var(--background-color);
+    margin: 0 .2rem .2rem 0;
+    padding: .1rem;
+    width: 100%;
+}
+
+.post-card_footer{
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 @media only screen and (min-width: 768px) {
     *,
     .name {

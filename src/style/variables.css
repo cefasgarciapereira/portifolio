@@ -8,11 +8,10 @@
 
 .theme-dark{
   --font-color: var(--white);
-  --primary: #D5FB5B;
+  --primary: var(--yellow);
 
   color: var(--font-color);
   background-color: var(--black);
-  
 }
 
 .theme-light{
