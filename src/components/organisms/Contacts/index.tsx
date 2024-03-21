@@ -1,5 +1,9 @@
 const contacts = [
     {
+        label: "Blog",
+        link: "/blog"
+    },
+    {
         label: "Linkedin",
         link: "https://www.linkedin.com/in/cefas-garcia-pereira"
     },
@@ -26,12 +30,12 @@ export default function Contacts() {
         <ul className="mt-2">
             {
                 contacts.map((contact, index) => (
-                    <li>
+                    <li key={index}>
                         <a
                             className="link--simple"
                             href={contact.link}
                             style={{
-                                opacity: +(1 - (index * 0.25))
+                                opacity: +(1 - (index * 0.15))
                             }}
                         >
                             {contact.label}

@@ -6,10 +6,10 @@ import PostCard from "../../components/organisms/PostCard"
 const Blog = () => {
     const { data } = useMedium()
 
-    return(
+    return (
         <Fragment>
             {data.items.map(item => (
-                <PostCard {...item} key={item.link}/>
+                <PostCard {...item} key={item.link} />
             ))}
         </Fragment>
     )

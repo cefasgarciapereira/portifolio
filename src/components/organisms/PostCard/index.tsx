@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom"
 import useTranslation from "../../../services/useTranslation"
 import { PostCardTranslation, content } from "./translation"
+import { handleReadTime, handlePubDate } from "../../../utils/blog"
 
 interface PostCardProps {
     author: string
@@ -20,7 +22,14 @@ const PostCard = (props: PostCardProps) => {
     return (
         <div className="post-card">
             <h4>
-                <a href={props.link} target="_blank">{props.title}</a>
+                <Link
+                    to={{
+                        pathname: "/post"
+                    }}
+                    state={props}
+                >
+                    {props.title}
+                </Link>
             </h4>
             <div className="post-card_data">
                 <span>{`${handleReadTime(props.content)} min `}{text.read}</span>
@@ -35,14 +44,6 @@ const PostCard = (props: PostCardProps) => {
             </div>
         </div>
     )
-}
-
-function handlePubDate(date: string): string {
-    return date.split(" ")[0]
-}
-
-function handleReadTime(content: string): Number {
-    return Number((content.length / 1800).toFixed())
 }
 
 export default PostCard
