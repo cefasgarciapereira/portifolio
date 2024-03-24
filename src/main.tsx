@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { IconContext } from "react-icons";
+import {
+  RouterProvider
+} from "react-router-dom";
 
 import Layout from "./components/templates/Layout";
-
-import Home from "./pages/Home";
-
 import { LangueProvider } from "./contexts/language";
+
+import router from "./router";
 
 import "./style/main.css";
 import "./style/styles.css";
@@ -18,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <LangueProvider>
       <IconContext.Provider value={{ className: "react-icon" }}>
         <Layout>
-          <Home />
+          <RouterProvider router={router} />
         </Layout>
       </IconContext.Provider>
     </LangueProvider>
