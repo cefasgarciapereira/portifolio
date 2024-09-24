@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment } from "react";
+import Link from "next/link";
 
 import useTranslation from "@/app/hooks/useTranslation";
 import Experience from "@/app/components/organisms/Experience";
@@ -40,9 +41,9 @@ export default function Home() {
 
       <div className={`${styles.mt2} ${styles.available}`}>
         <p>{text.available}</p>
-        <a href="mailto:cefasgarciapereira@gmail.com" className="link">
+        <Link href="mailto:cefasgarciapereira@gmail.com" className={styles.link}>
           {text.getInTouch}
-        </a>
+        </Link>
       </div>
       <Contacts />
     </Fragment>

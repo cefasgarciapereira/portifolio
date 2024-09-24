@@ -1,3 +1,7 @@
+import Link from "next/link"
+
+import styles from "./contacts.module.css"
+
 const contacts = [
   {
     label: "Blog",
@@ -27,19 +31,19 @@ const contacts = [
 
 export default function Contacts() {
   return (
-    <ul className="mt-2">
+    <ul className={styles.mt2}>
       {
         contacts.map((contact, index) => (
           <li key={index}>
-            <a
-              className="link--simple"
+            <Link
+              className={styles.linkSimple}
               href={contact.link}
               style={{
                 opacity: +(1 - (index * 0.15))
               }}
             >
               {contact.label}
-            </a>
+            </Link>
           </li>
         ))
       }

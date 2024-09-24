@@ -6,6 +6,7 @@ import "@/app/style/variables.css";
 
 import Footer from "@/app/components/organisms/Footer"
 import Toolbar from "@/app/components/organisms/Toolbar"
+import { LangueProvider } from "@/app/contexts/language"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,12 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} container`}>
-        {children}
-        <Footer />
-        <Toolbar />
-      </body>
-    </html>
+    <LangueProvider>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} container`}>
+          {children}
+          <Footer />
+          <Toolbar />
+        </body>
+      </html>
+    </LangueProvider>
   );
 }

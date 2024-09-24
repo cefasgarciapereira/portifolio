@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -22,6 +24,20 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.btn--clean{
+    background: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--font-color);
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.circular{
+    border-radius: 100px;
+    border: 1px solid var(--font-color);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -3,9 +3,11 @@ import ThemeToggler from "@/app/components/organisms/ThemeToggler"
 import ContrastToggler from "@/app/components/organisms/ContrastToggler"
 import LanguageToggler from "@/app/components/organisms/LanguageToggler"
 
+import styles from "./toolbar.module.css"
+
 export default function Toolbar() {
   return (
-    <div className="toolbar">
+    <div className={styles.toolbar}>
       <HomeButton />
       <ThemeToggler />
       <ContrastToggler />
