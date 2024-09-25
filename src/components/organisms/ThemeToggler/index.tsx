@@ -22,7 +22,7 @@ export default function ThemeToggler() {
   }
 
   return (
-    <a className="cursor-pointer" onClick={toggleDarkMode}>
+    <a className="menu-item cursor-pointer" onClick={toggleDarkMode}>
       {isDark ? "light mode" : "dark mode"}
     </a >
   )

@@ -26,10 +26,6 @@ export default function RootLayout({
       <html lang="en">
         <Head />
         <body className={`container`}>
-          <link itemProp="thumbnailUrl" href="url_image" />
-          <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject">
-            <link itemProp="url" href="url_image" />
-          </span>
           <Header />
           {children}
           <Footer />

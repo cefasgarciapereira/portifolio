@@ -26,8 +26,9 @@ export default function Toggler(props: TogglerProps) {
   }
 
   return (
-    <a onClick={toggleContrast} className="cursor-pointer">
+    <a onClick={toggleContrast} className="menu-item cursor-pointer">
       {isToggleOn ? iconOn : iconOff}
     </a>
   )
 }
+

@@ -5,13 +5,13 @@ import ThemeToggler from "@/components/organisms/ThemeToggler"
 import ContrastToggler from "@/components/organisms/ContrastToggler"
 import LanguageToggler from "@/components/organisms/LanguageToggler"
 
-import styles from "./toolbar.module.css"
+import styles from "./menu.module.css"
 
 export default function Toolbar() {
   return (
-    <div className={styles.toolbar}>
+    <div className={styles.menu}>
       <HomeButton />
-      <Link href="/blog">blog</Link>
+      <Link href="/blog" className="menu-item">blog</Link>
       <ThemeToggler />
       <ContrastToggler />
       <LanguageToggler />

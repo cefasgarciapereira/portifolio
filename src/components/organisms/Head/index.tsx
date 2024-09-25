@@ -53,6 +53,9 @@ export default function Head(props: HeadProps) {
       <meta property="twitter:image" content="https://cefas.me/logo.svg" />
 
       <meta property="og:url" content="https://cefas.me"></meta>
+
+      <link rel="preconnect" href="https://your-font-file-host/" />
+      <link rel="stylesheet" href="https://your-font-file-host/inter.css" />
     </NextHead>
   );
 }

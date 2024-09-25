@@ -12,10 +12,8 @@ export default function LanguageToggler() {
   }
 
   return (
-    <a onClick={toggleLanguage} className="cursor-pointer">
-      <div className="box-18">
-        {language === "pt" ? "english" : "portuguese"}
-      </div>
+    <a onClick={toggleLanguage} className="menu-item cursor-pointer">
+      {language === "pt" ? "english" : "portuguese"}
     </a>
   )
 }
