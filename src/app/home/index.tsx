@@ -3,10 +3,10 @@
 import { Fragment } from "react";
 import Link from "next/link";
 
-import useTranslation from "@/app/hooks/useTranslation";
-import Experience from "@/app/components/organisms/Experience";
-import Contacts from "@/app/components/organisms/Contacts";
-import Header from "@/app/components/organisms/Header";
+import useTranslation from "@/hooks/useTranslation";
+import Experience from "@/components/organisms/Experience";
+import Contacts from "@/components/organisms/Contacts";
+import Particles from "@/components/organisms/Particles";
 
 import { content, HomeTranslation } from "./translation";
 import styles from "./home.module.css";
@@ -16,8 +16,8 @@ export default function Home() {
 
   return (
     <Fragment>
-      <Header />
       <main>
+        <Particles quantity={100} />
         <h1 className={styles.name}>
           {"Cefas Garcia Pereira"}
           <br />

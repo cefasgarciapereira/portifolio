@@ -1,42 +1,38 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 
-import "@/app/style/globals.css";
-import "@/app/style/variables.css";
+import "@/styles/globals.css";
+import "@/styles/variables.css";
 
-import Footer from "@/app/components/organisms/Footer"
-import Toolbar from "@/app/components/organisms/Toolbar"
-import { LangueProvider } from "@/app/contexts/language"
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Footer from "@/components/organisms/Footer";
+import { LangueProvider } from "@/contexts/language";
+import Header from "@/components/organisms/Header";
+import Head, { HeadProps } from "@/components/organisms/Head";
 
 export const metadata: Metadata = {
   title: "Cefas Garcia Pereira",
-  description: "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
+  description:
+    "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
 };
 
 export default function RootLayout({
   children,
+  page
 }: Readonly<{
   children: React.ReactNode;
+  page: HeadProps
 }>) {
   return (
     <LangueProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} container`}>
+        <Head />
+        <body className={`container`}>
+          <link itemProp="thumbnailUrl" href="url_image" />
+          <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject">
+            <link itemProp="url" href="url_image" />
+          </span>
+          <Header />
           {children}
           <Footer />
-          <Toolbar />
         </body>
       </html>
     </LangueProvider>

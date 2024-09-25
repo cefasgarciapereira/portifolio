@@ -1,0 +1,39 @@
+.postCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 2rem 0;
+}
+
+.postCard h4 {
+  margin-bottom: 0;
+}
+
+.postCard h4 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tag {
+  background-color: var(--font-color);
+  color: var(--background-color);
+  margin: 0 0.2rem 0.2rem 0;
+  padding: 0.1rem;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.postCardData {
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.postCardData span {
+  margin: 0 0.5rem 0 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .postCard {
+    margin: 2.5rem 0;
+  }
+}
