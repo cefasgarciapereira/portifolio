@@ -17,7 +17,6 @@ export default function Home() {
   return (
     <Fragment>
       <main>
-        <Particles quantity={100} />
         <h1 className={styles.name}>
           {"Cefas Garcia Pereira"}
           <br />

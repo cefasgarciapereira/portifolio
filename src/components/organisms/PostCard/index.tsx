@@ -3,7 +3,7 @@
 import Link from "next/link"
 import useTranslation from "@/hooks/useTranslation"
 import { PostCardTranslation, content } from "./translation"
-import { handleReadTime, handlePubDate } from "@/utils/blog"
+import { handleReadTime, handlePubDate, formatSlug } from "@/utils/blog"
 
 import styles from "./postcard.module.css"
 
@@ -26,7 +26,7 @@ const PostCard = (props: PostCardProps) => {
   return (
     <div className={styles.postCard}>
       <h4>
-        <Link href="/post">
+        <Link href={`/blog/${formatSlug(props.title)}`}>
           {props.title}
         </Link>
       </h4>

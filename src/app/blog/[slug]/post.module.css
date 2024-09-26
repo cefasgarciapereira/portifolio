@@ -1,0 +1,85 @@
+.postPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.postPage img {
+  width: 100%;
+}
+
+.postPage figure {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.postPageContentWrapper pre {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.postPage a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.postPage h1 {
+  font-size: 2rem;
+}
+
+.postPage h2 {
+  font-size: 1.8rem;
+}
+
+.postPage h3 {
+  font-size: 1.5rem;
+}
+
+.postPage h4 {
+  font-size: 1.3rem;
+}
+
+.postPage h5 {
+  font-size: 1.1rem;
+}
+
+.postPage h6 {
+  font-size: 1rem;
+}
+
+.postPage p {
+  padding: 4rem 0 0 0;
+}
+
+.postPage blockquote {
+  padding: 4rem 0 0 1rem;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.postPageContentWrapper h1,
+.postPageContentWrapper h2,
+.postPageContentWrapper h3,
+.postPageContentWrapper h4,
+.postPageContentWrapper h5,
+.postPageContentWrapper h6 {
+  margin: 2rem 0 0.5rem 0;
+}
+
+.postPageContentWrapper figcaption {
+  align-self: center;
+  text-align: center;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.postPageContentWrapper img {
+  margin-top: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .postPage {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 10%;
+  }
+}
