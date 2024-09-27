@@ -1,0 +1,17 @@
+.mt2 {
+  margin-top: 2rem;
+}
+
+.linkSimple {
+  text-decoration: none;
+  font-weight: 400;
+  color: var(--font-color);
+  border-bottom: 1px solid var(--font-color);
+  line-height: 2;
+}
+
+.linkSimple:hover {
+  border: none;
+  border-bottom: 1px solid transparent;
+  transition: 0.4s !important;
+}

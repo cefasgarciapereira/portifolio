@@ -1,21 +1,19 @@
-import { useContext, useState } from "react"
-import LanguageContext from "../../../contexts/language"
+'use client'
+
+import { useContext } from "react"
+
+import LanguageContext from "@/contexts/language"
 
 export default function LanguageToggler() {
-    const { language, selectLanguage } = useContext(LanguageContext)
+  const { language, selectLanguage } = useContext(LanguageContext)
 
-    function toggleLanguage() {
-        selectLanguage(language === "pt" ? "en" : "pt")
-    }
+  function toggleLanguage() {
+    selectLanguage(language === "pt" ? "en" : "pt")
+  }
 
-    return (
-        <button
-            onClick={toggleLanguage}
-            className="btn--clean circular"
-        >
-            <div className="box-18">
-                {language === "pt" ? "en" : "pt"}
-            </div>
-        </button>
-    )
+  return (
+    <a onClick={toggleLanguage} className="menu-item cursor-pointer">
+      {language === "pt" ? "english" : "portuguese"}
+    </a>
+  )
 }

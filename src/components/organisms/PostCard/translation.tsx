@@ -6,9 +6,9 @@ export interface PostCardTranslation {
 
 export const content: Translation<PostCardTranslation> = {
   pt: {
-    read: "read"
+    read: "de leitura"
   },
   en: {
-    read: "de leitura"
+    read: "read"
   }
 }

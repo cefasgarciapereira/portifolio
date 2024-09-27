@@ -1,49 +1,48 @@
-import { Link } from "react-router-dom"
-import useTranslation from "../../../services/useTranslation"
+'use client'
+
+import Link from "next/link"
+import useTranslation from "@/hooks/useTranslation"
 import { PostCardTranslation, content } from "./translation"
-import { handleReadTime, handlePubDate } from "../../../utils/blog"
+import { handleReadTime, handlePubDate, formatSlug } from "@/utils/blog"
+
+import styles from "./postcard.module.css"
 
 interface PostCardProps {
-    author: string
-    categories: Array<string>
-    content: string
-    description: string
-    enclosure: object
-    guid: string
-    link: string
-    pubDate: string
-    thumbnail: string
-    title: string
+  author: string
+  categories: Array<string>
+  content: string
+  description: string
+  enclosure: object
+  guid: string
+  link: string
+  pubDate: string
+  thumbnail: string
+  title: string
 }
 
 const PostCard = (props: PostCardProps) => {
-    const text = useTranslation({ content }) as PostCardTranslation
+  const text = useTranslation({ content }) as PostCardTranslation
 
-    return (
-        <div className="post-card">
-            <h4>
-                <Link
-                    to={{
-                        pathname: "/post"
-                    }}
-                    state={props}
-                >
-                    {props.title}
-                </Link>
-            </h4>
-            <div className="post-card_data">
-                <span>{`${handleReadTime(props.content)} min `}{text.read}</span>
-                <span>{handlePubDate(props.pubDate)}</span>
-            </div>
-            <div>
-                {props.categories?.map((category, idx) =>
-                    <span key={`${category}-${idx}`} className="post-card_tag">
-                        {category}
-                    </span>
-                )}
-            </div>
-        </div>
-    )
+  return (
+    <div className={styles.postCard}>
+      <h4>
+        <Link href={`/blog/${formatSlug(props.title)}`}>
+          {props.title}
+        </Link>
+      </h4>
+      <div className={styles.postCardData}>
+        <span>{`${handleReadTime(props.content)} min `}{text.read}</span>
+        <span>{handlePubDate(props.pubDate)}</span>
+      </div>
+      <div>
+        {props.categories?.map((category, index) =>
+          <span key={`${category}-${index}`} className={styles.tag}>
+            {category}
+          </span>
+        )}
+      </div>
+    </div>
+  )
 }
 
 export default PostCard

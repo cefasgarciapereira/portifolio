@@ -1,7 +1,10 @@
-import { FiEye, FiEyeOff } from "react-icons/fi";
-
-import Toggler from "../../atoms/Toggler"
+import Toggler from "@/components/atoms/Toggler"
+import { Fragment } from 'react'
 
 export default function ContrastToggler() {
-    return <Toggler className="theme-contrast" iconOn={<FiEye />} iconOff={<FiEyeOff />} />
+  return <Toggler
+    className="theme-contrast"
+    iconOn={<Fragment>default</Fragment>}
+    iconOff={<Fragment>contrast</Fragment>}
+  />
 }
