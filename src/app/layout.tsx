@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import "@/styles/variables.css";
 import { LangueProvider } from "@/contexts/language";
 import { Fragment } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Cefas Garcia Pereira",
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <LangueProvider>
       <Fragment>
+        <SpeedInsights />
         {children}
       </Fragment>
     </LangueProvider>
