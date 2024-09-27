@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Cefas Garcia Pereira",
   description:
     "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
-  keywords: "cefas, software engineer, developer, fullstack, reactjs, master, software, code, machine learning, front end, fullstack",
+  keywords: "cefas, software engineer, developer, fullstack, reactjs, master, software, code, machine learning, fullstack, front end",
 };
 
 export default function RootLayout({
