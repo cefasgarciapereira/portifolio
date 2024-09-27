@@ -16,6 +16,33 @@
 .postPageContentWrapper pre {
   width: 100%;
   overflow-x: scroll;
+  margin-top: 4rem;
+  padding: 2rem;
+  background-color: var(--snippet-color);
+  border-radius: 0.2rem;
+  unicode-bidi: embed;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 0.8rem;
+}
+
+.postPageContentWrapper pre::-webkit-scrollbar {
+  width: 10px;
+}
+
+.postPageContentWrapper pre::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.postPageContentWrapper pre::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.postPageContentWrapper pre::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 
 .postPage a {
