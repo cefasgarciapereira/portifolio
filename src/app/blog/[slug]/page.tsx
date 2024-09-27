@@ -1,7 +1,7 @@
 import { formatSlug, handlePubDate } from "@/utils/blog";
-import { Fragment } from "react";
 
 import styles from "./post.module.css";
+import Layout from "@/components/templates/Layout";
 
 export interface MediumData {
   status: string;
@@ -31,28 +31,22 @@ interface MediumItem {
   title: string;
 }
 
-const initialState: MediumData = {
-  status: "",
-  feed: {
-    author: "",
-    description: "",
-    image: "",
-    link: "",
-    title: "",
-    url: "",
-  },
-  items: [],
-};
-
 export default async function Page({ params }: { params: { slug: string } }) {
-  let response = await fetch(
+  const response = await fetch(
     "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@cefasgpereira"
   );
   const data = (await response.json()) as MediumData;
   const post = data.items.filter((item) => formatSlug(item.title) === params.slug)[0];
 
   return (
-    <Fragment>
+    <Layout
+      head={{
+        title: post.title,
+        description: post.description,
+        image: post.thumbnail,
+        keywords: post.categories.join(", "),
+      }}
+    >
       <div className={styles.postPage}>
         <h1>{post.title}</h1>
         <span>{handlePubDate(post.pubDate)}</span>
@@ -61,6 +55,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
       </div>
-    </Fragment>
+    </Layout>
   );
 }

@@ -1,14 +1,21 @@
-import Footer from "@/components/organisms/Footer"
+import Footer from "@/components/organisms/Footer";
+import Head, { HeadProps } from "@/components/organisms/Head";
+import Header from "@/components/organisms/Header";
 
 interface LayoutProps {
-  children: JSX.Element
+  children: JSX.Element;
+  head?: HeadProps;
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout(props: LayoutProps) {
   return (
-    <div className="container">
-      {children}
-      <Footer />
-    </div>
-  )
+    <html lang="en">
+      <Head {...props.head} />
+      <body className={`container`}>
+        <Header />
+        {props.children}
+        <Footer />
+      </body>
+    </html>
+  );
 }

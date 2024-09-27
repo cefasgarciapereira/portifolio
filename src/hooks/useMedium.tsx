@@ -48,7 +48,7 @@ const useMedium = () => {
 
   useEffect(() => {
     handleMediumData()
-  }, [])
+  })
 
   async function handleMediumData() {
     const mediumData = await fetchMediumData()

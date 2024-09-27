@@ -1,5 +1,3 @@
-import { Eye, EyeOff } from '@geist-ui/icons'
-
 import Toggler from "@/components/atoms/Toggler"
 import { Fragment } from 'react'
 

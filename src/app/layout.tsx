@@ -2,35 +2,26 @@ import type { Metadata } from "next";
 
 import "@/styles/globals.css";
 import "@/styles/variables.css";
-
-import Footer from "@/components/organisms/Footer";
 import { LangueProvider } from "@/contexts/language";
-import Header from "@/components/organisms/Header";
-import Head, { HeadProps } from "@/components/organisms/Head";
+import { Fragment } from "react";
 
 export const metadata: Metadata = {
   title: "Cefas Garcia Pereira",
   description:
     "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
+  keywords: "cefas, software engineer, developer, fullstack, reactjs, master, software, code, machine learning, front end, fullstack",
 };
 
 export default function RootLayout({
-  children,
-  page
+  children
 }: Readonly<{
   children: React.ReactNode;
-  page: HeadProps
 }>) {
   return (
     <LangueProvider>
-      <html lang="en">
-        <Head />
-        <body className={`container`}>
-          <Header />
-          {children}
-          <Footer />
-        </body>
-      </html>
+      <Fragment>
+        {children}
+      </Fragment>
     </LangueProvider>
   );
 }

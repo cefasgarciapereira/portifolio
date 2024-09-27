@@ -6,7 +6,7 @@ export default function ThemeToggler() {
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
-    let body = document.getElementsByTagName("body")[0]
+    const body = document.getElementsByTagName("body")[0]
 
     if (isDark) {
       body.classList.remove("theme-light")

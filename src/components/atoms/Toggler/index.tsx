@@ -12,14 +12,14 @@ export default function Toggler(props: TogglerProps) {
   const [isToggleOn, setIsToggleOn] = useState(false)
   const { iconOn, iconOff, className } = props
   useEffect(() => {
-    let body = document.getElementsByTagName("body")[0]
+    const body = document.getElementsByTagName("body")[0]
 
     if (isToggleOn) {
       body.classList.add(className)
     } else {
       body.classList.remove(className)
     }
-  }, [isToggleOn])
+  }, [isToggleOn, className])
 
   function toggleContrast() {
     setIsToggleOn(!isToggleOn)
