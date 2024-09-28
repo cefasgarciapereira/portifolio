@@ -5,6 +5,7 @@ import "@/styles/variables.css";
 import { LangueProvider } from "@/contexts/language";
 import { Fragment } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: "Cefas Garcia Pereira",
@@ -22,6 +23,7 @@ export default function RootLayout({
     <LangueProvider>
       <Fragment>
         <SpeedInsights />
+        <GoogleAnalytics gaId="G-W9YJPQYTDG" />
         {children}
       </Fragment>
     </LangueProvider>
