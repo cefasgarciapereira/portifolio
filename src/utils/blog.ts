@@ -13,3 +13,9 @@ export function formatSlug(title: string): string {
   slug = slug.toLocaleLowerCase();
   return `${slug}`;
 }
+
+export function extractImageSrc(htmlString: string): string {
+  const regex = /<img\s+[^>]*src="([^"]+)"[^>]*>/;
+  const match = htmlString.match(regex);
+  return match ? match[1] : '';
+}

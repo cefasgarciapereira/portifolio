@@ -1,7 +1,7 @@
 import styles from "./post.module.css";
 import Layout from "@/components/templates/Layout";
 
-import { formatSlug, handlePubDate } from "@/utils/blog";
+import { formatSlug, handlePubDate, extractImageSrc } from "@/utils/blog";
 import defaultMetadata from "@/utils/metadata";
 import { Metadata } from "next";
 
@@ -44,6 +44,8 @@ export async function generateMetadata({
   const data = (await response.json()) as MediumData;
   const post = data.items.filter((item) => formatSlug(item.title) === params.slug)[0];
 
+  const thumbnail = extractImageSrc(post.description)
+
   return {
     ...defaultMetadata,
     title: post.title,
@@ -52,11 +54,11 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       url: `https://www.cefas.me/blog/${params.slug}`,
-      siteName: post.title,
+      siteName: "Cefas Garcia Pereira",
       description: post.description,
       images: [
         {
-          url: post.thumbnail,
+          url: thumbnail,
           width: 300,
           height: 300,
         },
@@ -67,7 +69,7 @@ export async function generateMetadata({
       description: post.description,
       images: [
         {
-          url: post.thumbnail,
+          url: thumbnail,
           width: 300,
           height: 300,
         },
