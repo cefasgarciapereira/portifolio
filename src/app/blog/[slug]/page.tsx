@@ -85,14 +85,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Layout>
-      <div className={styles.postPage}>
+      <article className={styles.postPage}>
         <h1>{post.title}</h1>
         <span>{handlePubDate(post.pubDate)}</span>
         <a href={post.link} style={{ margin: "1rem 0" }}></a>
         <div className={styles.postPageContentWrapper}>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
-      </div>
+      </article>
     </Layout>
   );
 }
