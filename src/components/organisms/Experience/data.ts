@@ -4,6 +4,7 @@ import pucVideo from "@/assets/videos/puc.webm"
 import triventoVideo from "@/assets/videos/trivento.webm"
 import senacVideo from "@/assets/videos/senac.webm"
 import webgoalVideo from "@/assets/videos/webgoal.webm"
+import deelVideo from "@/assets/videos/deel.webm"
 
 const airbnbLogo = "https://michieldegraaf.com/assets/images/case-airbnb.png"
 
@@ -16,6 +17,13 @@ export interface Experience {
 }
 
 export const experiences: Experience[] = [
+    {
+    company: "Deel",
+    role: "Sr. Software Engineer",
+    link: "https://www.deel.com",
+    image: airbnbLogo,
+    video: deelVideo
+  },
   {
     company: "CI&T",
     role: "Software Engineer",
