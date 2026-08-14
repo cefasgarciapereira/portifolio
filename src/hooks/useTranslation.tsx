@@ -1,10 +1,11 @@
-import { useContext } from 'react';
-import LanguageContext, { Translation } from '@/contexts/language';
+import { Translation } from '@/contexts/language';
+import useLocale from '@/hooks/useLocale';
+
 interface useTranslationParams {
-  content: Translation<object>
+  content: Translation<object>;
 }
 
 export default function useTranslation({ content }: useTranslationParams) {
-  const { language } = useContext(LanguageContext);
-  return content[language] as typeof content["pt"];
+  const locale = useLocale();
+  return content[locale] as typeof content["pt"];
 }

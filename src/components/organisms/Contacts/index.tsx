@@ -1,11 +1,17 @@
+'use client'
+
 import Link from "next/link"
+
+import { Language } from "@/contexts/language"
+import useLocale from "@/hooks/useLocale"
+import { localizedPath } from "@/utils/seo"
 
 import styles from "./contacts.module.css"
 
-const contacts = [
+const buildContacts = (locale: Language) => [
   {
     label: "Blog",
-    link: "/blog",
+    link: localizedPath(locale, "/blog"),
     target: "_self"
   },
   {
@@ -36,6 +42,8 @@ const contacts = [
 ]
 
 export default function Contacts() {
+  const locale = useLocale()
+  const contacts = buildContacts(locale)
   return (
     <ul className={styles.mt2}>
       {

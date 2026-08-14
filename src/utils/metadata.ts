@@ -1,49 +1,71 @@
 import { Metadata } from "next";
+import { SITE_URL } from "@/utils/seo";
+
+const description =
+  "Cefas Garcia Pereira is a Software Engineer and full-stack developer based in Poços de Caldas, Minas Gerais, Brazil, building web applications, mobile apps, automations and AI integrations.";
 
 const defaultMetadata: Metadata = {
-  title: "Cefas Garcia Pereira",
-  description:
-    "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Cefas Garcia Pereira | Software Engineer",
+    template: "%s | Cefas Garcia Pereira",
+  },
+  description,
   keywords: [
-    "cefas",
-    "software engineer",
-    "developer",
-    "fullstack",
-    "reactjs",
-    "master",
-    "software",
-    "code",
-    "machine learning",
-    "fullstack",
-    "front end",
+    "Cefas",
+    "Garcia",
+    "Pereira",
+    "Cefas Garcia Pereira",
+    "Software Engineer",
+    "Full Stack Developer",
+    "Software Engineer Brazil",
+    "Engenheiro de Software",
+    "Desenvolvedor Full Stack",
+    "React",
+    "Next.js",
+    "Node.js",
+    "TypeScript",
+    "Python",
   ],
+  authors: [{ name: "Cefas Garcia Pereira", url: SITE_URL }],
+  creator: "Cefas Garcia Pereira",
   publisher: "Cefas Garcia Pereira",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Cefas Garcia Pereira",
-    url: "https://www.cefas.me",
+    type: "website",
+    title: "Cefas Garcia Pereira | Software Engineer",
+    url: SITE_URL,
     siteName: "Cefas Garcia Pereira",
-    description:
-      "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
+    locale: "en_US",
+    description,
     images: [
       {
-        url: "https://www.cefas.me/logo.svg",
+        url: "/logo.svg",
         width: 300,
         height: 300,
+        alt: "Cefas Garcia Pereira",
       },
     ],
   },
   twitter: {
-    title: "Cefas Garcia Pereira",
-    description:
-      "Cefas Garcia Pereira has Master in Software Engineering (PUC-MG) and Bachelor in Computer Science (PUC-MG).",
-    images: [
-      {
-        url: "https://www.cefas.me/logo.svg",
-        width: 300,
-        height: 300,
-      },
-    ],
-  }
+    card: "summary",
+    title: "Cefas Garcia Pereira | Software Engineer",
+    description,
+    images: ["/logo.svg"],
+  },
 };
 
-export default defaultMetadata
+export default defaultMetadata;

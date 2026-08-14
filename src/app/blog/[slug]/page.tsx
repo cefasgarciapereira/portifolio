@@ -1,36 +1,19 @@
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+
 import styles from "./post.module.css";
 import Layout from "@/components/templates/Layout";
+import JsonLd from "@/components/atoms/JsonLd";
 
 import { formatSlug, handlePubDate, extractImageSrc } from "@/utils/blog";
-import defaultMetadata from "@/utils/metadata";
-import { Metadata } from "next";
+import { fetchMediumItems } from "@/components/templates/BlogList";
+import { SITE_URL, PERSON_ID, stripHtml } from "@/utils/seo";
 
-export interface MediumData {
-  status: string;
-  feed: MediumFeed;
-  items: Array<MediumItem>;
-}
+export const revalidate = 3600;
 
-interface MediumFeed {
-  author: string;
-  description: string;
-  image: string;
-  link: string;
-  title: string;
-  url: string;
-}
-
-interface MediumItem {
-  author: string;
-  categories: Array<string>;
-  content: string;
-  description: string;
-  enclosure: object;
-  guid: string;
-  link: string;
-  pubDate: string;
-  thumbnail: string;
-  title: string;
+async function getPost(slug: string) {
+  const items = await fetchMediumItems();
+  return items.find((item) => formatSlug(item.title) === slug);
 }
 
 export async function generateMetadata({
@@ -38,63 +21,109 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const response = await fetch(
-    "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@cefasgpereira"
-  );
-  const data = (await response.json()) as MediumData;
-  const post = data.items.filter((item) => formatSlug(item.title) === params.slug)[0];
+  const post = await getPost(params.slug);
 
-  const thumbnail = extractImageSrc(post.description)
+  if (!post) {
+    return { title: "Post not found", robots: { index: false, follow: false } };
+  }
+
+  const description = stripHtml(post.description);
+  const thumbnail = extractImageSrc(post.description) || "/logo.svg";
+  const url = `/blog/${params.slug}`;
 
   return {
-    ...defaultMetadata,
     title: post.title,
-    description: post.description,
+    description,
     keywords: post.categories,
+    authors: [{ name: "Cefas Garcia Pereira", url: SITE_URL }],
+    alternates: { canonical: url },
     openGraph: {
+      type: "article",
       title: post.title,
-      url: `https://www.cefas.me/blog/${params.slug}`,
+      description,
+      url,
       siteName: "Cefas Garcia Pereira",
-      description: post.description,
-      images: [
-        {
-          url: thumbnail,
-          width: 300,
-          height: 300,
-        },
-      ],
+      publishedTime: new Date(post.pubDate).toISOString(),
+      authors: ["Cefas Garcia Pereira"],
+      images: [{ url: thumbnail }],
     },
     twitter: {
+      card: "summary_large_image",
       title: post.title,
-      description: post.description,
-      images: [
-        {
-          url: thumbnail,
-          width: 300,
-          height: 300,
-        },
-      ],
+      description,
+      images: [thumbnail],
     },
   };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const response = await fetch(
-    "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@cefasgpereira"
-  );
-  const data = (await response.json()) as MediumData;
-  const post = data.items.filter((item) => formatSlug(item.title) === params.slug)[0];
+  const post = await getPost(params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const description = stripHtml(post.description);
+  const thumbnail = extractImageSrc(post.description) || `${SITE_URL}/logo.svg`;
+  const url = `${SITE_URL}/blog/${params.slug}`;
+  const isoDate = new Date(post.pubDate).toISOString();
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    mainEntityOfPage: url,
+    url,
+    headline: post.title,
+    description,
+    image: thumbnail,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    keywords: post.categories?.join(", "),
+    author: {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Cefas Garcia Pereira",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Cefas Garcia Pereira",
+      url: SITE_URL,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: url },
+    ],
+  };
 
   return (
-    <Layout>
-      <article className={styles.postPage}>
-        <h1>{post.title}</h1>
-        <span>{handlePubDate(post.pubDate)}</span>
-        <a href={post.link} style={{ margin: "1rem 0" }}></a>
-        <div className={styles.postPageContentWrapper}>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
-        </div>
-      </article>
+    <Layout locale="en">
+      <main>
+        <JsonLd data={articleSchema} />
+        <JsonLd data={breadcrumbSchema} />
+        <article className={styles.postPage}>
+          <header>
+            <h1>{post.title}</h1>
+            <time dateTime={isoDate}>{handlePubDate(post.pubDate)}</time>
+          </header>
+          <div className={styles.postPageContentWrapper}>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          </div>
+          <p>
+            <a href={post.link} target="_blank" rel="noopener noreferrer">
+              View this article on Medium
+            </a>
+          </p>
+        </article>
+      </main>
     </Layout>
   );
 }

@@ -25,11 +25,11 @@ const PostCard = (props: PostCardProps) => {
 
   return (
     <div className={styles.postCard}>
-      <h4>
+      <h2 className={styles.postCardTitle}>
         <Link href={`/blog/${formatSlug(props.title)}`}>
           {props.title}
         </Link>
-      </h4>
+      </h2>
       <div className={styles.postCardData}>
         <span>{`${handleReadTime(props.content)} min `}{text.read}</span>
         <span>{handlePubDate(props.pubDate)}</span>

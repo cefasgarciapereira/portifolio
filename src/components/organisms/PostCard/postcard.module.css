@@ -5,11 +5,13 @@
   margin: 0 0 2rem 0;
 }
 
-.postCard h4 {
+.postCardTitle {
   margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
-.postCard h4 a {
+.postCardTitle a {
   text-decoration: none;
   color: inherit;
 }
