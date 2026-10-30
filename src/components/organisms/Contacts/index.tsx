@@ -33,12 +33,12 @@ const buildContacts = (locale: Language) => [
     label: "Github",
     link: "https://github.com/cefasgarciapereira",
     target: "_blank"
-  },
-  {
-    label: "CV",
-    link: "/cv_english.pdf",
-    target: "_blank"
   }
+]
+
+const cvOptions = [
+  { label: "Português (PT-BR)", link: "/cv_portuguese.pdf", hrefLang: "pt-BR" },
+  { label: "English (EN)", link: "/cv_english.pdf", hrefLang: "en" }
 ]
 
 export default function Contacts() {
@@ -62,6 +62,31 @@ export default function Contacts() {
           </li>
         ))
       }
+      <li>
+        <details
+          className={styles.cv}
+          style={{
+            opacity: +(1 - (contacts.length * 0.15))
+          }}
+        >
+          <summary className={styles.linkSimple}>CV</summary>
+          <ul className={styles.cvOptions}>
+            {cvOptions.map((option) => (
+              <li key={option.link}>
+                <a
+                  className={styles.linkSimple}
+                  href={option.link}
+                  hrefLang={option.hrefLang}
+                  type="application/pdf"
+                  download
+                >
+                  {option.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </li>
     </ul>
   )
 }

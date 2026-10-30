@@ -13,7 +13,21 @@ export const revalidate = 3600;
 
 async function getPost(slug: string) {
   const items = await fetchMediumItems();
+  // An empty feed means rss2json/Medium failed, not that the post is gone.
+  // Throwing keeps the last good ISR version instead of caching a 404.
+  if (items.length === 0) {
+    throw new Error("Medium feed unavailable");
+  }
   return items.find((item) => formatSlug(item.title) === slug);
+}
+
+export async function generateStaticParams() {
+  try {
+    const items = await fetchMediumItems();
+    return items.map((item) => ({ slug: formatSlug(item.title) }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({

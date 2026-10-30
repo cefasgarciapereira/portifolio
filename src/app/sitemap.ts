@@ -9,10 +9,11 @@ export const revalidate = 3600;
 function localizedEntry(
   enPath: string,
   ptPath: string,
+  path: string,
   lastModified: Date
 ): MetadataRoute.Sitemap[number] {
   return {
-    url: `${SITE_URL}${enPath}`,
+    url: `${SITE_URL}${path}`,
     lastModified,
     alternates: {
       languages: {
@@ -27,9 +28,13 @@ function localizedEntry(
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
+  // Every language version gets its own <url> entry (with the full set of
+  // hreflang alternates), as required by Google for localized sitemaps.
   const staticPages: MetadataRoute.Sitemap = [
-    localizedEntry("/", "/pt", now),
-    localizedEntry("/blog", "/pt/blog", now),
+    localizedEntry("/", "/pt", "/", now),
+    localizedEntry("/", "/pt", "/pt", now),
+    localizedEntry("/blog", "/pt/blog", "/blog", now),
+    localizedEntry("/blog", "/pt/blog", "/pt/blog", now),
   ];
 
   let posts: Awaited<ReturnType<typeof fetchMediumItems>> = [];

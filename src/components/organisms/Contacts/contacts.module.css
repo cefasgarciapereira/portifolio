@@ -15,3 +15,24 @@
   border-bottom: 1px solid transparent;
   transition: 0.4s !important;
 }
+
+.cv summary {
+  display: inline;
+  cursor: pointer;
+  list-style: none;
+}
+
+.cv summary::-webkit-details-marker {
+  display: none;
+}
+
+.cv[open] summary {
+  border-bottom: 1px solid transparent;
+}
+
+.cvOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  padding-left: 1rem;
+}
