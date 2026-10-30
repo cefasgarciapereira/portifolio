@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-import { fileURLToPath } from 'url';
-
 
 const nextConfig = {
   async redirects() {

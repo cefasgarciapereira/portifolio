@@ -33,9 +33,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) {
     return { title: "Post not found", robots: { index: false, follow: false } };
@@ -43,7 +44,7 @@ export async function generateMetadata({
 
   const description = stripHtml(post.description);
   const thumbnail = extractImageSrc(post.description) || "/logo.svg";
-  const url = `/blog/${params.slug}`;
+  const url = `/blog/${slug}`;
 
   return {
     title: post.title,
@@ -70,8 +71,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
@@ -79,7 +85,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const description = stripHtml(post.description);
   const thumbnail = extractImageSrc(post.description) || `${SITE_URL}/logo.svg`;
-  const url = `${SITE_URL}/blog/${params.slug}`;
+  const url = `${SITE_URL}/blog/${slug}`;
   const isoDate = new Date(post.pubDate).toISOString();
 
   const articleSchema = {
