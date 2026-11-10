@@ -1,0 +1,14 @@
+.logo {
+  display: block;
+  color: var(--strong);
+}
+
+.mark {
+  fill: transparent;
+  stroke: currentColor;
+  transition: fill 0.3s;
+}
+
+.logo:hover .mark {
+  fill: currentColor;
+}

@@ -1,112 +1,124 @@
-.postPage {
+.post {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 0 88px;
 }
 
-.postPage img {
+.header {
   width: 100%;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: var(--line-width) solid var(--line);
 }
 
-.postPage figure {
-  padding: 0;
-  margin: 0;
-  border: 0;
+.title {
+  color: var(--strong);
+  font-size: clamp(30px, 5.4vw, 56px);
+  line-height: 0.95;
 }
 
-.postPageContentWrapper pre {
+.content {
   width: 100%;
-  overflow-x: scroll;
-  margin-top: 4rem;
-  padding: 2rem;
-  background-color: var(--snippet-color);
-  border-radius: 0.2rem;
-  unicode-bidi: embed;
-  font-family: monospace;
-  white-space: pre;
-  font-size: 0.8rem;
+  margin-bottom: 40px;
+  line-height: 1.7;
 }
 
-.postPageContentWrapper pre::-webkit-scrollbar {
-  width: 10px;
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  margin: 2.5rem 0 0.75rem;
+  color: var(--strong);
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  line-height: 1.05;
 }
 
-.postPageContentWrapper pre::-webkit-scrollbar-track {
-  background-color: transparent;
+.content h3 {
+  font-size: clamp(24px, 3vw, 32px);
 }
 
-.postPageContentWrapper pre::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
-  border-radius: 20px;
-  border: 6px solid transparent;
-  background-clip: content-box;
+.content h4 {
+  font-size: clamp(20px, 2.4vw, 26px);
 }
 
-.postPageContentWrapper pre::-webkit-scrollbar-thumb:hover {
-  background-color: #a8bbbf;
+.content p {
+  margin: 0 0 1.25rem;
 }
 
-.postPage a {
-  text-decoration: none;
-  color: var(--primary);
+.content a {
+  color: var(--strong);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.postPage h1 {
-  font-size: 2rem;
+.content a:hover {
+  color: var(--hover-ink);
 }
 
-.postPage h2 {
-  font-size: 1.8rem;
+.content ul,
+.content ol {
+  margin: 0 0 1.25rem 1.25rem;
 }
 
-.postPage h3 {
-  font-size: 1.5rem;
+.content ul {
+  list-style: square;
 }
 
-.postPage h4 {
-  font-size: 1.3rem;
+.content li {
+  margin-bottom: 0.5rem;
 }
 
-.postPage h5 {
-  font-size: 1.1rem;
+.content figure {
+  margin: 2rem 0;
 }
 
-.postPage h6 {
-  font-size: 1rem;
+.content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--line-width) solid var(--line);
+  border-radius: var(--radius);
 }
 
-.postPage p {
-  padding: 4rem 0 0 0;
+.content figcaption {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: 12px;
+  text-align: center;
 }
 
-.postPage blockquote {
-  padding: 4rem 0 0 1rem;
-  font-size: 1.5rem;
+.content blockquote {
+  margin: 2rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid var(--accent);
+  color: var(--strong);
+  font-size: 1.2em;
   font-style: italic;
 }
 
-.postPageContentWrapper h1,
-.postPageContentWrapper h2,
-.postPageContentWrapper h3,
-.postPageContentWrapper h4,
-.postPageContentWrapper h5,
-.postPageContentWrapper h6 {
-  margin: 2rem 0 0.5rem 0;
+.content code {
+  font-family: var(--font-code);
+  font-size: 0.9em;
 }
 
-.postPageContentWrapper figcaption {
-  align-self: center;
-  text-align: center;
-  margin: 0.5rem 0 1rem 0;
-}
-
-.postPageContentWrapper img {
-  margin-top: 2rem;
-}
-
-@media only screen and (min-width: 768px) {
-  .postPage {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 10%;
-  }
+.content pre {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+  border: var(--line-width) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-code);
+  font-size: 13px;
+  white-space: pre;
 }

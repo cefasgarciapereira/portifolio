@@ -1,0 +1,14 @@
+.clock {
+  display: flex;
+  flex: none;
+  align-items: center;
+  margin-left: auto;
+  padding-left: 16px;
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: 12px;
+}
+
+.clock i {
+  font-style: normal;
+}

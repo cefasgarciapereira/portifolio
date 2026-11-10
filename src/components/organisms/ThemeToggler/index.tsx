@@ -1,29 +1,25 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import Button from "@/components/atoms/Button"
+import { MoonIcon, SunIcon } from "@/components/atoms/Icons"
+import { Language } from "@/contexts/language"
+import useTheme from "@/hooks/useTheme"
 
-export default function ThemeToggler() {
-  const [isDark, setIsDark] = useState(true)
+import { content } from "./translation"
 
-  useEffect(() => {
-    const body = document.getElementsByTagName("body")[0]
+interface ThemeTogglerProps {
+  locale: Language
+}
 
-    if (isDark) {
-      body.classList.remove("theme-light")
-      body.classList.add("theme-dark")
-    } else {
-      body.classList.remove("theme-dark")
-      body.classList.add("theme-light")
-    }
-  }, [isDark])
-
-  function toggleDarkMode() {
-    setIsDark(!isDark)
-  }
+export default function ThemeToggler({ locale }: ThemeTogglerProps) {
+  const { theme, toggleTheme } = useTheme()
+  const text = content[locale]
+  const isDark = theme === "dark"
 
   return (
-    <a className="menu-item cursor-pointer" onClick={toggleDarkMode}>
-      {isDark ? "light mode" : "dark mode"}
-    </a >
+    <Button onClick={toggleTheme} aria-label={text.aria}>
+      {isDark ? <SunIcon /> : <MoonIcon />}
+      <span>{isDark ? text.light : text.dark}</span>
+    </Button>
   )
 }

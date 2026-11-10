@@ -1,6 +1,7 @@
-import PostCard from "@/components/organisms/PostCard";
 import Layout from "@/components/templates/Layout";
 import JsonLd from "@/components/atoms/JsonLd";
+import PostList from "@/components/organisms/PostList";
+import Section from "@/components/organisms/Section";
 import { Language } from "@/contexts/language";
 import { formatSlug } from "@/utils/blog";
 import {
@@ -10,7 +11,9 @@ import {
   localizedAbsolute,
 } from "@/utils/seo";
 
-interface MediumItem {
+import styles from "./bloglist.module.css";
+
+export interface MediumItem {
   author: string;
   categories: Array<string>;
   content: string;
@@ -28,14 +31,16 @@ interface MediumData {
   items: Array<MediumItem>;
 }
 
-const copy: Record<Language, { title: string; subtitle: string }> = {
+const copy: Record<Language, { label: string; title: string; subtitle: string }> = {
   en: {
-    title: "Blog",
+    label: "~/blog",
+    title: "blog",
     subtitle:
       "Articles on software engineering, full-stack development and web technology by Cefas Garcia Pereira.",
   },
   pt: {
-    title: "Blog",
+    label: "~/blog",
+    title: "blog",
     subtitle:
       "Artigos sobre engenharia de software, desenvolvimento full-stack e tecnologia web por Cefas Garcia Pereira.",
   },
@@ -77,20 +82,11 @@ export default async function BlogList({ locale }: { locale: Language }) {
 
   return (
     <Layout locale={locale}>
-      <main>
-        <JsonLd data={blogSchema} />
-        <header>
-          <h1>{text.title}</h1>
-          <p>{text.subtitle}</p>
-        </header>
-        <ul>
-          {items.map((item, index) => (
-            <li key={`${item.title}_${index}`}>
-              <PostCard {...item} />
-            </li>
-          ))}
-        </ul>
-      </main>
+      <JsonLd data={blogSchema} />
+      <Section id="blog" label={text.label} title={text.title} titleAs="h1" withCursor>
+        <p className={styles.subtitle}>{text.subtitle}</p>
+        <PostList posts={items} />
+      </Section>
     </Layout>
   );
 }

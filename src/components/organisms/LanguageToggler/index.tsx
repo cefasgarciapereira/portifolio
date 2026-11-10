@@ -3,29 +3,53 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { Language } from "@/contexts/language"
 import useLocale from "@/hooks/useLocale"
 
-/**
- * Switches language by navigating to the equivalent URL in the other locale,
- * so each language keeps its own indexable URL (en at root, pt under /pt).
- */
+import styles from "./languagetoggler.module.css"
+
+const LANGUAGES: { locale: Language; label: string; hrefLang: string }[] = [
+  { locale: "pt", label: "PT", hrefLang: "pt-BR" },
+  { locale: "en", label: "EN", hrefLang: "en" },
+]
+
+const ARIA_LABEL: Record<Language, string> = {
+  en: "language",
+  pt: "idioma",
+}
+
+function counterpartPath(pathname: string, target: Language) {
+  const isPost = /^\/blog\/[^/]+/.test(pathname)
+  if (isPost) {
+    return target === "pt" ? "/pt/blog" : "/blog"
+  }
+  const basePath = pathname.replace(/^\/pt(?=\/|$)/, "") || "/"
+  if (target === "en") {
+    return basePath
+  }
+  return `/pt${basePath === "/" ? "" : basePath}`
+}
+
 export default function LanguageToggler() {
   const pathname = usePathname() || "/"
-  const isPt = useLocale() === "pt"
-
-  // Blog posts only exist in their original language (/blog/<slug>), so from a
-  // post the toggler points to the other locale's blog index instead of a 404.
-  const isPost = /^\/blog\/[^/]+/.test(pathname)
-
-  const counterpart = isPost
-    ? "/pt/blog"
-    : isPt
-      ? pathname.replace(/^\/pt/, "") || "/"
-      : `/pt${pathname === "/" ? "" : pathname}`
+  const currentLocale = useLocale()
 
   return (
-    <Link href={counterpart} className="menu-item cursor-pointer" hrefLang={isPt ? "en" : "pt-BR"}>
-      {isPt ? "english" : "portuguese"}
-    </Link>
+    <nav className={styles.toggler} aria-label={ARIA_LABEL[currentLocale]}>
+      {LANGUAGES.map(({ locale, label, hrefLang }) => {
+        const isActive = locale === currentLocale
+        return (
+          <Link
+            key={locale}
+            href={counterpartPath(pathname, locale)}
+            hrefLang={hrefLang}
+            aria-current={isActive ? "true" : undefined}
+            className={`${styles.option} ${isActive ? styles.active : ""}`}
+          >
+            {label}
+          </Link>
+        )
+      })}
+    </nav>
   )
 }

@@ -1,57 +1,44 @@
-"use client";
-
-import Link from "next/link";
-
-import useTranslation from "@/hooks/useTranslation";
-import useLocale from "@/hooks/useLocale";
-import Experience from "@/components/organisms/Experience";
-import Contacts from "@/components/organisms/Contacts";
 import JsonLd from "@/components/atoms/JsonLd";
+import BlogPreview from "@/components/organisms/BlogPreview";
+import Contact from "@/components/organisms/Contact";
+import Experience from "@/components/organisms/Experience";
+import Hero from "@/components/organisms/Hero";
+import Profile from "@/components/organisms/Profile";
+import Projects from "@/components/organisms/Projects";
+import Resume from "@/components/organisms/Resume";
 import Layout from "@/components/templates/Layout";
+import { fetchMediumItems, MediumItem } from "@/components/templates/BlogList";
+import { Language } from "@/contexts/language";
 import { profilePageSchema } from "@/utils/seo";
 
-import { content, HomeTranslation } from "./translation";
-import styles from "./home.module.css";
+const LATEST_POSTS_COUNT = 4;
 
-export default function Home() {
-  const locale = useLocale();
-  const text = useTranslation({ content }) as HomeTranslation;
+async function fetchLatestPosts(): Promise<MediumItem[]> {
+  try {
+    const items = await fetchMediumItems();
+    return items.slice(0, LATEST_POSTS_COUNT);
+  } catch {
+    return [];
+  }
+}
+
+interface HomeProps {
+  locale: Language;
+}
+
+export default async function Home({ locale }: HomeProps) {
+  const posts = await fetchLatestPosts();
 
   return (
     <Layout locale={locale}>
-      <main>
-        <JsonLd data={profilePageSchema(locale)} />
-        <h1 className={styles.name}>
-          {"Cefas Garcia Pereira"}
-          <br />
-          <span className={styles.role}>{`— ${text.role}`}</span>
-        </h1>
-        <p className={`${styles.mt2} ${styles.introduction}`}>{text.intro}</p>
-        <div className={styles.flex}>
-          <a
-            className={`${styles.mt2} ${styles.link}`}
-            href="mailto:cefasgarciapereira@gmail.com"
-          >
-            {text.getInTouch}
-          </a>
-        </div>
-
-        <Experience />
-
-        <div>
-          <p className={`${styles.mt2} ${styles.conclusion}`}>{text.conclusion1}</p>
-          <p className={styles.conclusion}>{text.conclusion2}</p>
-        </div>
-
-        <div className={`${styles.mt2} ${styles.available}`}>
-          <p>{text.available}</p>
-          <Link href="mailto:cefasgarciapereira@gmail.com" className={styles.link}>
-            {text.getInTouch}
-          </Link>
-        </div>
-
-        <Contacts />
-      </main>
+      <JsonLd data={profilePageSchema(locale)} />
+      <Hero locale={locale} />
+      <Profile locale={locale} />
+      <Experience locale={locale} />
+      <Projects locale={locale} />
+      <Resume locale={locale} />
+      <BlogPreview locale={locale} posts={posts} />
+      <Contact locale={locale} />
     </Layout>
   );
 }

@@ -1,0 +1,5 @@
+.subtitle {
+  max-width: 62ch;
+  margin-bottom: 20px;
+  color: var(--muted);
+}

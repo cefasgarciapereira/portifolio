@@ -1,0 +1,49 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: var(--line-width) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--control-bg);
+  color: var(--strong);
+  font-family: var(--font-code);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.16s var(--ease),
+    box-shadow 0.16s var(--ease),
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.button:hover {
+  transform: var(--hover-shift);
+  box-shadow: var(--shadow);
+  border-color: var(--hover-line);
+  color: var(--hover-ink);
+}
+
+.button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.primary {
+  background: var(--inverse-bg);
+  border-color: var(--inverse-bg);
+  color: var(--inverse-ink);
+}
+
+.primary:hover {
+  background: var(--primary-hover-bg);
+  border-color: var(--primary-hover-bg);
+  color: var(--primary-hover-ink);
+}

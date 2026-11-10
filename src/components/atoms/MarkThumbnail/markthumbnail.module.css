@@ -1,0 +1,25 @@
+.thumbnail {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dots {
+  transition: transform 0.8s var(--ease);
+}
+
+.mark {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.5s var(--ease);
+}
+
+:global(.glitch-trigger):hover .dots {
+  transform: translate(6px, -4px);
+}
+
+:global(.glitch-trigger):hover .mark {
+  transform: scale(1.08) rotate(-4deg);
+}

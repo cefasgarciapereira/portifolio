@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+:global(.theme-flash) .container {
+  animation: shake 0.32s steps(3) 1;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(2px, 0);
+  }
+  33% {
+    transform: translate(-2px, 1px);
+  }
+  66% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: none;
+  }
+}

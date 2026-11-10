@@ -1,0 +1,25 @@
+.facts {
+  display: flex;
+  flex-direction: column;
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--muted);
+}
+
+.term {
+  padding-top: 2px;
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.value {
+  color: var(--strong);
+}

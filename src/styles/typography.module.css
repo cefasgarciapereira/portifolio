@@ -1,0 +1,11 @@
+.display {
+  font-family: var(--font-display);
+  font-stretch: var(--display-stretch);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  text-transform: var(--display-case);
+}
+
+.mono {
+  font-family: var(--font-code);
+}

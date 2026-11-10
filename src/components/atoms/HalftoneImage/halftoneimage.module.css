@@ -1,0 +1,12 @@
+.halftone {
+  --dot-pitch: 5px;
+  --dot-size: 1.5px;
+
+  display: block;
+  color: var(--strong);
+  background:
+    radial-gradient(circle, currentColor var(--dot-size), transparent calc(var(--dot-size) + 0.5px)) 0 0 / var(--dot-pitch) var(--dot-pitch),
+    radial-gradient(circle, currentColor var(--dot-size), transparent calc(var(--dot-size) + 0.5px)) calc(var(--dot-pitch) / 2) calc(var(--dot-pitch) / 2) / var(--dot-pitch) var(--dot-pitch);
+  -webkit-mask: var(--mask) center / contain no-repeat;
+  mask: var(--mask) center / contain no-repeat;
+}

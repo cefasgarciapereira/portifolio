@@ -1,0 +1,24 @@
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 3px 10px;
+  border: 1px solid var(--chip-line);
+  border-radius: var(--pill-radius);
+  color: var(--chip-ink);
+  font-family: var(--font-code);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.chip:hover {
+  background: var(--inverse-bg);
+  color: var(--inverse-ink);
+}

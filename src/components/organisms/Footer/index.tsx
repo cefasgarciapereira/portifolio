@@ -1,9 +1,23 @@
-import styles from "./footer.module.css"
+import Container from "@/components/atoms/Container";
+import { Language } from "@/contexts/language";
 
-export default function Footer() {
+import { content } from "./translation";
+import styles from "./footer.module.css";
+
+interface FooterProps {
+  locale: Language;
+}
+
+export default function Footer({ locale }: FooterProps) {
+  const text = content[locale];
+
   return (
     <footer className={styles.footer}>
-      {`© ${new Date().getFullYear()} — Cefas Garcia Pereira`}
+      <Container className={styles.content}>
+        <span>{`© ${new Date().getFullYear()} Cefas Garcia Pereira`}</span>
+        <span>{text.madeWith}</span>
+        <span>cefas.me</span>
+      </Container>
     </footer>
-  )
+  );
 }

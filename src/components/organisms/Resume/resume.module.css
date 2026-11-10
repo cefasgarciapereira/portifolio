@@ -1,0 +1,98 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.title {
+  color: var(--strong);
+  font-size: 22px;
+}
+
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.education li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--muted);
+}
+
+.education b {
+  color: var(--strong);
+  font-weight: 600;
+}
+
+.education span {
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: 12px;
+}
+
+.download {
+  border-color: var(--inverse-bg);
+  background: var(--inverse-bg);
+  color: var(--inverse-ink);
+}
+
+.download .title {
+  color: var(--inverse-ink);
+}
+
+.downloadLabel {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.file {
+  font-family: var(--font-code);
+  font-size: 13px;
+}
+
+.barcode {
+  height: 56px;
+  color: var(--inverse-ink);
+}
+
+.downloadButton,
+.downloadButton:hover {
+  border-color: var(--inverse-ink);
+  background: var(--inverse-ink);
+  color: var(--inverse-bg);
+}
+
+.downloadButton:hover {
+  border-color: var(--inverse-hover-bg);
+  background: var(--inverse-hover-bg);
+  color: var(--inverse-hover-ink);
+}
+
+.otherVersion {
+  font-family: var(--font-code);
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 0.8;
+}
+
+.otherVersion:hover {
+  opacity: 1;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
