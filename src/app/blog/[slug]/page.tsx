@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import styles from "./post.module.css";
 import Layout from "@/components/templates/Layout";
 import JsonLd from "@/components/atoms/JsonLd";
+import Button from "@/components/atoms/Button";
+import Container from "@/components/atoms/Container";
+import GlitchText from "@/components/atoms/GlitchText";
+import SectionLabel from "@/components/atoms/SectionLabel";
 
 import { formatSlug, handlePubDate, extractImageSrc } from "@/utils/blog";
 import { fetchMediumItems } from "@/components/templates/BlogList";
@@ -126,24 +130,22 @@ export default async function Page({
 
   return (
     <Layout locale="en">
-      <main>
-        <JsonLd data={articleSchema} />
-        <JsonLd data={breadcrumbSchema} />
-        <article className={styles.postPage}>
-          <header>
-            <h1>{post.title}</h1>
-            <time dateTime={isoDate}>{handlePubDate(post.pubDate)}</time>
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <Container>
+        <article className={styles.post}>
+          <header className={styles.header}>
+            <SectionLabel withCursor>
+              <time dateTime={isoDate}>{handlePubDate(post.pubDate)}</time>
+            </SectionLabel>
+            <GlitchText as="h1" text={post.title} className={styles.title} />
           </header>
-          <div className={styles.postPageContentWrapper}>
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          </div>
-          <p>
-            <a href={post.link} target="_blank" rel="noopener noreferrer">
-              View this article on Medium
-            </a>
-          </p>
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content }} />
+          <Button href={post.link} target="_blank" rel="noopener noreferrer" variant="primary">
+            View this article on Medium ↗
+          </Button>
         </article>
-      </main>
+      </Container>
     </Layout>
   );
 }

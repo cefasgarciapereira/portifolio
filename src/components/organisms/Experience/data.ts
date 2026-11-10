@@ -1,69 +1,51 @@
-import ciandtVideo from "@/assets/videos/ciandt.webm"
-import studiosolVideo from "@/assets/videos/studiosol.webm"
-import pucVideo from "@/assets/videos/puc.webm"
-import triventoVideo from "@/assets/videos/trivento.webm"
-import senacVideo from "@/assets/videos/senac.webm"
-import webgoalVideo from "@/assets/videos/webgoal.webm"
-import deelVideo from "@/assets/videos/deel.webm"
-
-const airbnbLogo = "https://michieldegraaf.com/assets/images/case-airbnb.png"
-
 export interface Experience {
-  company: string,
-  role: string,
-  link: string,
-  image?: string,
-  video?: string
+  company: string;
+  role: string;
+  link: string;
+  logo: string;
 }
 
 export const experiences: Experience[] = [
-    {
+  {
     company: "Deel",
     role: "Sr. Software Engineer",
     link: "https://www.deel.com",
-    image: airbnbLogo,
-    video: deelVideo
+    logo: "/logos/deel.png",
   },
   {
     company: "CI&T",
     role: "Software Engineer",
     link: "https://ciandt.com/br/pt-br",
-    image: airbnbLogo,
-    video: ciandtVideo
+    logo: "/logos/ciandt.png",
   },
   {
     company: "Studio Sol",
     role: "React Developer",
     link: "https://studiosol.com.br",
-    image: airbnbLogo,
-    video: studiosolVideo
+    logo: "/logos/studiosol.png",
   },
   {
     company: "PUC Minas",
     role: "Professor",
     link: "https://pucminas.br",
-    image: airbnbLogo,
-    video: pucVideo
+    logo: "/logos/puc.png",
   },
   {
     company: "Trivento",
     role: "React & React Native Developer",
     link: "https://triventoeducacao.com.br",
-    image: airbnbLogo,
-    video: triventoVideo
+    logo: "/logos/trivento.png",
   },
   {
     company: "Senac",
     role: "Professor",
     link: "https://www.mg.senac.br",
-    image: airbnbLogo,
-    video: senacVideo
+    logo: "/logos/senac.png",
   },
   {
     company: "Webgoal",
     role: "Fullstack Developer",
     link: "https://www.webgoal.com.br",
-    image: airbnbLogo,
-    video: webgoalVideo
-  }
-]
+    logo: "/logos/webgoal.png",
+  },
+];

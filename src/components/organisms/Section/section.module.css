@@ -1,0 +1,46 @@
+.section {
+  padding: 56px 0;
+  border-top: var(--section-divider);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: var(--line-width) solid var(--line);
+}
+
+.title {
+  color: var(--strong);
+  font-size: var(--h2-size);
+  line-height: 0.9;
+}
+
+@media (min-width: 960px) {
+  .section {
+    padding: 88px 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

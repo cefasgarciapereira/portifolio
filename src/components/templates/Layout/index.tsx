@@ -1,20 +1,57 @@
+import { Archivo, JetBrains_Mono } from "next/font/google";
+import { ReactNode } from "react";
+
+import ScreenEffects from "@/components/atoms/ScreenEffects";
+import ThemeScript from "@/components/atoms/ThemeScript";
+import BottomNav from "@/components/organisms/BottomNav";
 import Footer from "@/components/organisms/Footer";
 import Header from "@/components/organisms/Header";
 import { Language } from "@/contexts/language";
 import { htmlLang } from "@/utils/seo";
+import { DEFAULT_THEME } from "@/utils/theme";
+
+import { content } from "./translation";
+import styles from "./layout.module.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
 
 interface LayoutProps {
-  children: JSX.Element;
+  children: ReactNode;
   locale?: Language;
 }
 
 export default function Layout({ children, locale = "en" }: LayoutProps) {
+  const text = content[locale];
+
   return (
-    <html lang={htmlLang(locale)}>
-      <body className={`container`}>
-        <Header />
-        {children}
-        <Footer />
+    <html
+      lang={htmlLang(locale)}
+      data-theme={DEFAULT_THEME}
+      className={`${archivo.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
+        <ThemeScript />
+        <ScreenEffects />
+        <a className={styles.skip} href="#content">
+          {text.skip}
+        </a>
+        <Header locale={locale} />
+        <main id="content">{children}</main>
+        <Footer locale={locale} />
+        <BottomNav locale={locale} />
       </body>
     </html>
   );

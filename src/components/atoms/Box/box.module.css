@@ -1,0 +1,4 @@
+.box {
+  border: var(--line-width) solid var(--line);
+  border-radius: var(--radius);
+}

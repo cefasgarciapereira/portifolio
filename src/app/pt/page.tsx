@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import Home from "@/app/home";
 import { languageAlternates } from "@/utils/seo";
 
+export const revalidate = 3600;
+
 const description =
   "Cefas Garcia Pereira é Engenheiro de Software e desenvolvedor full-stack em Poços de Caldas, Minas Gerais, Brasil, criando aplicações web, aplicativos mobile, automações e integrações com Inteligência Artificial.";
 
@@ -29,5 +31,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Home />;
+  return <Home locale="pt" />;
 }

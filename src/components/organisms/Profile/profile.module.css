@@ -1,0 +1,23 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+
+.prose p {
+  max-width: 62ch;
+  margin: 0 0 16px;
+}
+
+.prose p:first-child {
+  color: var(--strong);
+  font-size: var(--prose-lead-size);
+  line-height: 1.4;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 56px;
+  }
+}

@@ -1,37 +1,138 @@
 :root {
-  --black: #000;
-  --white: #FFF;
-  --pink: #D33B80;
-  --blue: #001aff;
-  --yellow: #EFFF44;
-  --dark-blue: #060235;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --font-display: var(--font-archivo), "Archivo", sans-serif;
+  --font-code: var(--font-jetbrains), "JetBrains Mono", monospace;
 }
 
-.theme-dark{
-  --font-color: var(--white);
-  --primary: var(--yellow);
-  --background-color: var(--black);
-  --snippet-color: #333;
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
 
-  color: var(--font-color);
-  background-color: var(--black);
+  --bg: #121212;
+  --surface: #171717;
+  --hover-surface: #181818;
+  --detail-surface: #151515;
+  --ink: #e4e1db;
+  --strong: #f6f4f0;
+  --muted: #8f8c87;
+  --line: #2e2e2e;
+  --line-width: 1px;
+  --radius: 0px;
+  --pill-radius: 0px;
+  --dot-radius: 0px;
+  --halftone: #cfc7bc;
+  --accent: #5b86ff;
+  --focus: var(--accent);
+  --inverse-bg: #e4e1db;
+  --inverse-ink: #121212;
+  --glitch-a: #ff5a1f;
+  --glitch-b: #5b86ff;
+  --shadow: none;
+  --hand-bg: #1e1e1e;
+  --hand-line: var(--line);
+
+  --font-body: var(--font-code);
+  --font-size-body: 14px;
+  --display-stretch: 125%;
+  --display-weight: 700;
+  --display-tracking: -0.035em;
+  --display-case: lowercase;
+
+  --h1-size: clamp(28px, 5.4vw, 52px);
+  --h2-size: clamp(30px, 5.4vw, 56px);
+  --big-size: clamp(32px, 6vw, 64px);
+  --lead-size: 15px;
+  --lead-height: 1.7;
+  --prose-lead-size: 1.1em;
+
+  --control-bg: transparent;
+  --hover-shift: none;
+  --hover-line: var(--accent);
+  --hover-ink: var(--accent);
+  --primary-hover-bg: var(--accent);
+  --primary-hover-ink: #0b0b0b;
+  --inverse-hover-bg: var(--accent);
+  --inverse-hover-ink: #0b0b0b;
+  --toggle-on-bg: transparent;
+  --toggle-on-ink: var(--accent);
+  --toggle-on-line: var(--accent);
+  --toggle-on-shadow: inset 0 -2px 0 var(--accent);
+  --chip-line: var(--line);
+  --chip-ink: var(--muted);
+  --row-hover-bg: transparent;
+  --row-hover-ink: var(--accent);
+  --row-hover-meta: var(--muted);
+  --equalizer: var(--accent);
+  --section-divider: 1px solid var(--line);
+
+  --grain-opacity: 0.09;
+  --grain-blend: screen;
+  --scan-opacity: 0.45;
+  --glow-opacity: 0.2;
 }
 
-.theme-light{
-  --font-color: var(--black);
-  --primary: var(--blue);
-  --background-color: var(--white);
-  --snippet-color: #F9F9F9;
-  
-  color: var(--font-color);
-  background-color: var(--white);
-}
+[data-theme="light"] {
+  color-scheme: light;
 
-.theme-contrast{
-  --font-color: #F9AD00;
-  --primary: #E01574;
-  --background-color: var(--dark-blue);
+  --bg: #eee6da;
+  --surface: #f5efe6;
+  --hover-surface: var(--surface);
+  --detail-surface: var(--surface);
+  --ink: #2f2c2a;
+  --strong: #151312;
+  --muted: #625b56;
+  --line: #151312;
+  --line-width: 2.5px;
+  --radius: 8px;
+  --pill-radius: 999px;
+  --dot-radius: 50%;
+  --halftone: #3b2a2d;
+  --accent: #151312;
+  --focus: var(--glitch-a);
+  --inverse-bg: #353230;
+  --inverse-ink: #f5efe6;
+  --glitch-a: #c2482b;
+  --glitch-b: #2f6db5;
+  --shadow: 5px 5px 0 var(--line);
+  --hand-bg: #353230;
+  --hand-line: var(--hand-bg);
 
-  color: var(--font-color);
-  background-color: var(--dark-blue);
+  --font-body: var(--font-display);
+  --font-size-body: 17px;
+  --display-stretch: 72%;
+  --display-weight: 800;
+  --display-tracking: -0.045em;
+  --display-case: none;
+
+  --h1-size: clamp(34px, 7.6vw, 70px);
+  --h2-size: clamp(40px, 8vw, 88px);
+  --big-size: clamp(44px, 9vw, 104px);
+  --lead-size: clamp(17px, 2.1vw, 21px);
+  --lead-height: 1.45;
+  --prose-lead-size: 1.25em;
+
+  --control-bg: var(--surface);
+  --hover-shift: translate(-2px, -2px);
+  --hover-line: var(--line);
+  --hover-ink: var(--strong);
+  --primary-hover-bg: var(--inverse-bg);
+  --primary-hover-ink: var(--inverse-ink);
+  --inverse-hover-bg: var(--inverse-ink);
+  --inverse-hover-ink: var(--inverse-bg);
+  --toggle-on-bg: var(--inverse-bg);
+  --toggle-on-ink: var(--inverse-ink);
+  --toggle-on-line: var(--inverse-bg);
+  --toggle-on-shadow: none;
+  --chip-line: var(--ink);
+  --chip-ink: var(--ink);
+  --row-hover-bg: var(--inverse-bg);
+  --row-hover-ink: var(--inverse-ink);
+  --row-hover-meta: var(--inverse-ink);
+  --equalizer: var(--strong);
+  --section-divider: none;
+
+  --grain-opacity: 0.16;
+  --grain-blend: multiply;
+  --scan-opacity: 0;
+  --glow-opacity: 0;
 }

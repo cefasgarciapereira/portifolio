@@ -1,14 +1,20 @@
-import { Translation } from "@/contexts/language"
+import { Translation } from "@/contexts/language";
 
 export interface ExperienceTranslation {
-  knowMyLastJobs: string
+  label: string;
+  title: string;
+  logoAlt: string;
 }
 
 export const content: Translation<ExperienceTranslation> = {
   en: {
-    knowMyLastJobs: "Know my latest works: "
+    label: "02 — path",
+    title: "experience",
+    logoAlt: "logo",
   },
   pt: {
-    knowMyLastJobs: "Conheça meus últimos trabalhos: "
-  }
-}
+    label: "02 — trajetória",
+    title: "experiência",
+    logoAlt: "logo da",
+  },
+};

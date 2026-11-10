@@ -13,7 +13,7 @@ const nextConfig = {
   },
   webpack(config) {
     config.module.rules.push({
-      test: /\.(webp|png|jpe?g|gif|svg|webm)$/i,
+      test: /\.(webp|png|jpe?g|gif|svg)$/i,
       use: [
         {
           loader: 'file-loader',

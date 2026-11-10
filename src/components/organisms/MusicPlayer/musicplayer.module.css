@@ -1,0 +1,125 @@
+.player {
+  position: relative;
+  padding: 14px 16px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.source {
+  color: var(--muted);
+  font-family: var(--font-code);
+  font-size: 11px;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.source:hover {
+  color: var(--hover-ink);
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 22px;
+  height: 18px;
+}
+
+.equalizer i {
+  display: block;
+  width: 4px;
+  height: 30%;
+  background: var(--strong);
+  animation: equalize 0.8s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.equalizer i:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.equalizer i:nth-child(3) {
+  animation-delay: -0.55s;
+}
+
+.equalizer i:nth-child(4) {
+  animation-delay: -0.15s;
+}
+
+.playing i {
+  background: var(--equalizer);
+  animation-play-state: running;
+}
+
+.track {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--strong);
+  font-family: var(--font-code);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+}
+
+.controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--strong);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.controls button:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+.controls button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.controls svg {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes equalize {
+  from {
+    height: 20%;
+  }
+  to {
+    height: 100%;
+  }
+}

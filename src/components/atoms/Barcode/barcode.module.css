@@ -1,0 +1,30 @@
+.barcode {
+  display: flex;
+  align-items: stretch;
+  height: clamp(64px, 10vw, 104px);
+  overflow-x: clip;
+  overflow-y: visible;
+  color: var(--strong);
+}
+
+.bar {
+  flex: none;
+  background: currentColor;
+  transform-origin: bottom;
+}
+
+:global(.barcode-trigger):hover .bar {
+  animation: wave 2.4s ease-in-out infinite;
+  animation-delay: calc(var(--bar-index) * 50ms);
+}
+
+@keyframes wave {
+  0%,
+  30%,
+  100% {
+    transform: scaleY(1);
+  }
+  15% {
+    transform: scaleY(1.06);
+  }
+}

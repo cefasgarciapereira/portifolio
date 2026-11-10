@@ -1,0 +1,66 @@
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--glitch-a);
+}
+
+.glitch::after {
+  color: var(--glitch-b);
+}
+
+.glitch:hover::before,
+:global(.glitch-trigger):hover .glitch::before {
+  opacity: 0.9;
+  animation: glitchA 0.4s steps(2) 1;
+}
+
+.glitch:hover::after,
+:global(.glitch-trigger):hover .glitch::after {
+  opacity: 0.9;
+  animation: glitchB 0.4s steps(2) 1;
+}
+
+@keyframes glitchA {
+  0% {
+    clip-path: inset(0 0 62% 0);
+    transform: translate(-3px, -1px);
+  }
+  50% {
+    clip-path: inset(38% 0 22% 0);
+    transform: translate(3px, 1px);
+  }
+  100% {
+    clip-path: inset(72% 0 0 0);
+    transform: translate(-1px, 0);
+  }
+}
+
+@keyframes glitchB {
+  0% {
+    clip-path: inset(58% 0 8% 0);
+    transform: translate(3px, 1px);
+  }
+  50% {
+    clip-path: inset(8% 0 64% 0);
+    transform: translate(-3px, 0);
+  }
+  100% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(1px, -1px);
+  }
+}

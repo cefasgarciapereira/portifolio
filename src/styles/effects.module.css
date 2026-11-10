@@ -1,0 +1,43 @@
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+:global(.glitch-trigger):hover .logoGlitch {
+  animation: logoGlitch 0.35s steps(2) 1;
+}
+
+.slowSpin {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+:global(.spin-trigger):hover .slowSpin {
+  animation: slowSpin 8s linear infinite;
+}
+
+@keyframes slowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes logoGlitch {
+  0% {
+    transform: translate(-2px, 1px);
+    filter: drop-shadow(2px 0 var(--glitch-a)) drop-shadow(-2px 0 var(--glitch-b));
+  }
+  50% {
+    transform: translate(2px, -1px);
+    filter: drop-shadow(-2px 0 var(--glitch-a)) drop-shadow(2px 0 var(--glitch-b));
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}

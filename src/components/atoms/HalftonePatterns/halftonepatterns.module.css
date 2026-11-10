@@ -1,0 +1,14 @@
+.hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.markDot {
+  fill: var(--strong);
+}
+
+.backgroundDot {
+  fill: var(--halftone);
+  opacity: 0.75;
+}
