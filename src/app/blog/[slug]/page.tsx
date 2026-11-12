@@ -9,141 +9,128 @@ import Container from "@/components/atoms/Container";
 import GlitchText from "@/components/atoms/GlitchText";
 import SectionLabel from "@/components/atoms/SectionLabel";
 
-import { formatSlug, handlePubDate, extractImageSrc } from "@/utils/blog";
-import { fetchMediumItems } from "@/components/templates/BlogList";
-import { SITE_URL, PERSON_ID, stripHtml } from "@/utils/seo";
+import {
+  formatPostDate,
+  getAllPosts,
+  getPost,
+  postHreflang,
+  postLanguageVersions,
+  postUrl,
+} from "@/utils/posts";
+import { SITE_URL, PERSON_ID, RSS_PATH, htmlLang, localizedAbsolute, localizedPath } from "@/utils/seo";
 
-export const revalidate = 3600;
+const AUTHOR_NAME = "Cefas Garcia Pereira";
+const DEFAULT_IMAGE = "/logo.svg";
 
-async function getPost(slug: string) {
-  const items = await fetchMediumItems();
-  // An empty feed means rss2json/Medium failed, not that the post is gone.
-  // Throwing keeps the last good ISR version instead of caching a 404.
-  if (items.length === 0) {
-    throw new Error("Medium feed unavailable");
-  }
-  return items.find((item) => formatSlug(item.title) === slug);
+const BACK_LABEL = { en: "← all posts", pt: "← todos os posts" } as const;
+const OG_LOCALE = { en: "en_US", pt: "pt_BR" } as const;
+
+/** Every post is known at build time; anything else is a real 404. */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateStaticParams() {
-  try {
-    const items = await fetchMediumItems();
-    return items.map((item) => ({ slug: formatSlug(item.title) }));
-  } catch {
-    return [];
-  }
-}
+type PageProps = { params: Promise<{ slug: string }> };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
 
   if (!post) {
     return { title: "Post not found", robots: { index: false, follow: false } };
   }
 
-  const description = stripHtml(post.description);
-  const thumbnail = extractImageSrc(post.description) || "/logo.svg";
-  const url = `/blog/${slug}`;
+  const url = postUrl(slug);
+  const hreflang = postHreflang(post);
 
   return {
     title: post.title,
-    description,
-    keywords: post.categories,
-    authors: [{ name: "Cefas Garcia Pereira", url: SITE_URL }],
-    alternates: { canonical: url },
+    description: post.description,
+    keywords: post.tags,
+    authors: [{ name: AUTHOR_NAME, url: SITE_URL }],
+    alternates: {
+      canonical: url,
+      ...(hreflang ? { languages: hreflang } : {}),
+      types: { "application/rss+xml": RSS_PATH },
+    },
     openGraph: {
       type: "article",
       title: post.title,
-      description,
+      description: post.description,
       url,
-      siteName: "Cefas Garcia Pereira",
-      publishedTime: new Date(post.pubDate).toISOString(),
-      authors: ["Cefas Garcia Pereira"],
-      images: [{ url: thumbnail }],
+      siteName: AUTHOR_NAME,
+      locale: OG_LOCALE[post.lang],
+      publishedTime: post.date,
+      modifiedTime: post.updated,
+      authors: [SITE_URL],
+      tags: post.tags,
     },
+    // og:image is the card from ./opengraph-image.tsx; X falls back to it.
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description,
-      images: [thumbnail],
+      description: post.description,
     },
   };
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
 
   if (!post) {
     notFound();
   }
 
-  const description = stripHtml(post.description);
-  const thumbnail = extractImageSrc(post.description) || `${SITE_URL}/logo.svg`;
-  const url = `${SITE_URL}/blog/${slug}`;
-  const isoDate = new Date(post.pubDate).toISOString();
+  const url = postUrl(slug);
+  const blogUrl = localizedAbsolute(post.lang, "/blog");
+  const author = { "@type": "Person", "@id": PERSON_ID, name: AUTHOR_NAME, url: SITE_URL };
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${url}#article`,
-    mainEntityOfPage: url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
     headline: post.title,
-    description,
-    image: thumbnail,
-    datePublished: isoDate,
-    dateModified: isoDate,
-    keywords: post.categories?.join(", "),
-    author: {
-      "@type": "Person",
-      "@id": PERSON_ID,
-      name: "Cefas Garcia Pereira",
-      url: SITE_URL,
-    },
-    publisher: {
-      "@type": "Person",
-      "@id": PERSON_ID,
-      name: "Cefas Garcia Pereira",
-      url: SITE_URL,
-    },
+    description: post.description,
+    image: `${SITE_URL}${post.cover ?? DEFAULT_IMAGE}`,
+    datePublished: post.date,
+    dateModified: post.updated,
+    inLanguage: htmlLang(post.lang),
+    keywords: post.tags.join(", "),
+    timeRequired: `PT${post.readingMinutes}M`,
+    author,
+    publisher: author,
+    isPartOf: { "@type": "Blog", "@id": `${blogUrl}#blog`, url: blogUrl },
   };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 1, name: "Home", item: localizedAbsolute(post.lang, "/") },
+      { "@type": "ListItem", position: 2, name: "Blog", item: blogUrl },
       { "@type": "ListItem", position: 3, name: post.title, item: url },
     ],
   };
 
   return (
-    <Layout locale="en">
+    <Layout locale={post.lang} languageLinks={postLanguageVersions(post)}>
       <JsonLd data={articleSchema} />
       <JsonLd data={breadcrumbSchema} />
       <Container>
         <article className={styles.post}>
           <header className={styles.header}>
             <SectionLabel withCursor>
-              <time dateTime={isoDate}>{handlePubDate(post.pubDate)}</time>
+              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </SectionLabel>
             <GlitchText as="h1" text={post.title} className={styles.title} />
           </header>
-          <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content }} />
-          <Button href={post.link} target="_blank" rel="noopener noreferrer" variant="primary">
-            View this article on Medium ↗
-          </Button>
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.html }} />
+          <Button href={localizedPath(post.lang, "/blog")}>{BACK_LABEL[post.lang]}</Button>
         </article>
       </Container>
     </Layout>

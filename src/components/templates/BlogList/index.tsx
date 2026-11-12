@@ -3,7 +3,7 @@ import JsonLd from "@/components/atoms/JsonLd";
 import PostList from "@/components/organisms/PostList";
 import Section from "@/components/organisms/Section";
 import { Language } from "@/contexts/language";
-import { formatSlug } from "@/utils/blog";
+import { getPostsForLocale } from "@/utils/posts";
 import {
   SITE_URL,
   PERSON_ID,
@@ -12,24 +12,6 @@ import {
 } from "@/utils/seo";
 
 import styles from "./bloglist.module.css";
-
-export interface MediumItem {
-  author: string;
-  categories: Array<string>;
-  content: string;
-  description: string;
-  enclosure: object;
-  guid: string;
-  link: string;
-  pubDate: string;
-  thumbnail: string;
-  title: string;
-}
-
-interface MediumData {
-  status: string;
-  items: Array<MediumItem>;
-}
 
 const copy: Record<Language, { label: string; title: string; subtitle: string }> = {
   en: {
@@ -46,17 +28,8 @@ const copy: Record<Language, { label: string; title: string; subtitle: string }>
   },
 };
 
-export async function fetchMediumItems(): Promise<MediumItem[]> {
-  const response = await fetch(
-    "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@cefasgpereira",
-    { next: { revalidate: 3600 } }
-  );
-  const data = (await response.json()) as MediumData;
-  return data?.items ?? [];
-}
-
-export default async function BlogList({ locale }: { locale: Language }) {
-  const items = await fetchMediumItems();
+export default function BlogList({ locale }: { locale: Language }) {
+  const posts = getPostsForLocale(locale);
   const text = copy[locale];
 
   const blogSchema = {
@@ -72,11 +45,12 @@ export default async function BlogList({ locale }: { locale: Language }) {
       name: "Cefas Garcia Pereira",
       url: SITE_URL,
     },
-    blogPost: items.map((item) => ({
+    blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
-      headline: item.title,
-      url: `${SITE_URL}/blog/${formatSlug(item.title)}`,
-      datePublished: new Date(item.pubDate).toISOString(),
+      headline: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      datePublished: post.date,
+      inLanguage: htmlLang(post.lang),
     })),
   };
 
@@ -85,7 +59,7 @@ export default async function BlogList({ locale }: { locale: Language }) {
       <JsonLd data={blogSchema} />
       <Section id="blog" label={text.label} title={text.title} titleAs="h1" withCursor>
         <p className={styles.subtitle}>{text.subtitle}</p>
-        <PostList posts={items} />
+        <PostList posts={posts} />
       </Section>
     </Layout>
   );

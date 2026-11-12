@@ -3,8 +3,6 @@ import { Metadata } from "next";
 import BlogList from "@/components/templates/BlogList";
 import { languageAlternates } from "@/utils/seo";
 
-export const revalidate = 3600;
-
 const description =
   "Articles on software engineering, full-stack development and web technology by Cefas Garcia Pereira.";
 

@@ -7,16 +7,14 @@ import { Language } from "@/contexts/language";
 import typography from "@/styles/typography.module.css";
 import { localizedPath } from "@/utils/seo";
 
-import { content } from "./translation";
 import styles from "./header.module.css";
 
 interface HeaderProps {
   locale: Language;
+  languageLinks?: Partial<Record<Language, string>>;
 }
 
-export default function Header({ locale }: HeaderProps) {
-  const text = content[locale];
-
+export default function Header({ locale, languageLinks }: HeaderProps) {
   return (
     <header className={styles.header} id="root">
       <Container className={styles.bar}>
@@ -24,11 +22,7 @@ export default function Header({ locale }: HeaderProps) {
           cefas
         </Link>
         <div className={styles.controls}>
-          <span className={styles.status}>
-            <span className={styles.dot} aria-hidden="true" />
-            {text.status}
-          </span>
-          <LanguageToggler />
+          <LanguageToggler locale={locale} links={languageLinks} />
           <ThemeToggler locale={locale} />
         </div>
       </Container>
