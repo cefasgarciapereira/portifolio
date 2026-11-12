@@ -51,20 +51,13 @@ const defaultMetadata: Metadata = {
     siteName: "Cefas Garcia Pereira",
     locale: "en_US",
     description,
-    images: [
-      {
-        url: "/logo.svg",
-        width: 300,
-        height: 300,
-        alt: "Cefas Garcia Pereira",
-      },
-    ],
   },
+  // og:image / twitter:image come from the opengraph-image.tsx route files
+  // (PNG cards rendered at build time); X falls back to og:image.
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Cefas Garcia Pereira | Software Engineer",
     description,
-    images: ["/logo.svg"],
   },
 };
 

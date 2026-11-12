@@ -41,12 +41,16 @@
   line-height: 1.05;
 }
 
+.content h2 {
+  font-size: clamp(26px, 3.4vw, 36px);
+}
+
 .content h3 {
-  font-size: clamp(24px, 3vw, 32px);
+  font-size: clamp(21px, 2.6vw, 28px);
 }
 
 .content h4 {
-  font-size: clamp(20px, 2.4vw, 26px);
+  font-size: clamp(18px, 2.2vw, 22px);
 }
 
 .content p {
@@ -110,6 +114,14 @@
   font-size: 0.9em;
 }
 
+.content :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius);
+  background: var(--code-inline-bg);
+  color: var(--strong);
+  overflow-wrap: anywhere;
+}
+
 .content pre {
   width: 100%;
   margin: 2rem 0;
@@ -117,8 +129,119 @@
   overflow-x: auto;
   border: var(--line-width) solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--code-bg);
   font-family: var(--font-code);
   font-size: 13px;
+  line-height: 1.6;
   white-space: pre;
+}
+
+.content pre code {
+  display: block;
+  font-size: inherit;
+  color: var(--ink);
+}
+
+.content ol {
+  list-style: decimal;
+}
+
+.content li > ul,
+.content li > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.content hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: var(--line-width) solid var(--line);
+}
+
+.content :global(.table-scroll) {
+  width: 100%;
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.content th,
+.content td {
+  padding: 0.6rem 0.8rem;
+  border: var(--line-width) solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.content th {
+  background: var(--surface);
+  color: var(--strong);
+  font-family: var(--font-code);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.content :global(.hljs-comment),
+.content :global(.hljs-quote) {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+.content :global(.hljs-keyword),
+.content :global(.hljs-selector-tag),
+.content :global(.hljs-literal),
+.content :global(.hljs-doctag) {
+  color: var(--code-keyword);
+}
+
+.content :global(.hljs-string),
+.content :global(.hljs-regexp),
+.content :global(.hljs-addition),
+.content :global(.hljs-template-tag) {
+  color: var(--code-string);
+}
+
+.content :global(.hljs-number),
+.content :global(.hljs-symbol),
+.content :global(.hljs-bullet),
+.content :global(.hljs-deletion) {
+  color: var(--code-number);
+}
+
+.content :global(.hljs-title),
+.content :global(.hljs-section),
+.content :global(.hljs-name) {
+  color: var(--code-title);
+  font-weight: 700;
+}
+
+.content :global(.hljs-type),
+.content :global(.hljs-built_in),
+.content :global(.hljs-class),
+.content :global(.hljs-attr),
+.content :global(.hljs-attribute),
+.content :global(.hljs-variable),
+.content :global(.hljs-params) {
+  color: var(--code-type);
+}
+
+.content :global(.hljs-meta),
+.content :global(.hljs-subst),
+.content :global(.hljs-selector-class),
+.content :global(.hljs-selector-id) {
+  color: var(--code-meta);
+}
+
+.content :global(.hljs-emphasis) {
+  font-style: italic;
+}
+
+.content :global(.hljs-strong) {
+  font-weight: 700;
 }

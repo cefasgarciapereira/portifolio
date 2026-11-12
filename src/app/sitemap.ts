@@ -1,10 +1,7 @@
 import { MetadataRoute } from "next";
 
 import { SITE_URL } from "@/utils/seo";
-import { formatSlug } from "@/utils/blog";
-import { fetchMediumItems } from "@/components/templates/BlogList";
-
-export const revalidate = 3600;
+import { getAllPosts, postHreflang, postUrl } from "@/utils/posts";
 
 function localizedEntry(
   enPath: string,
@@ -25,22 +22,16 @@ function localizedEntry(
   };
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let posts: Awaited<ReturnType<typeof fetchMediumItems>> = [];
-  try {
-    posts = await fetchMediumItems();
-  } catch {
-    posts = [];
-  }
+export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getAllPosts();
 
   // lastmod must reflect real content changes. Stamping "now" on every request
   // teaches Google to ignore the field, which slows recrawling of new posts.
   // The blog index changes when a post is published; the home page has no
   // reliable date, so it gets none.
-  const latestPost = posts
-    .map((post) => new Date(post.pubDate))
-    .filter((date) => !Number.isNaN(date.getTime()))
-    .sort((a, b) => b.getTime() - a.getTime())[0];
+  const latestPost = posts.length
+    ? new Date(Math.max(...posts.map((post) => Date.parse(post.updated))))
+    : undefined;
 
   // Every language version gets its own <url> entry (with the full set of
   // hreflang alternates), as required by Google for localized sitemaps.
@@ -51,10 +42,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     localizedEntry("/blog", "/pt/blog", "/pt/blog", latestPost),
   ];
 
-  const postPages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE_URL}/blog/${formatSlug(post.title)}`,
-    lastModified: new Date(post.pubDate),
-  }));
+  const postPages: MetadataRoute.Sitemap = posts.map((post) => {
+    const hreflang = postHreflang(post);
+    return {
+      url: postUrl(post.slug),
+      lastModified: new Date(post.updated),
+      ...(hreflang
+        ? {
+            alternates: {
+              languages: Object.fromEntries(
+                Object.entries(hreflang).map(([lang, path]) => [lang, `${SITE_URL}${path}`])
+              ),
+            },
+          }
+        : {}),
+    };
+  });
 
   return [...staticPages, ...postPages];
 }

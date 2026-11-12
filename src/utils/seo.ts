@@ -3,6 +3,9 @@ import { Language } from "@/contexts/language";
 /** Canonical host for the whole site. Every absolute URL derives from this. */
 export const SITE_URL = "https://www.cefas.me";
 
+/** Full-content RSS feed of the blog. */
+export const RSS_PATH = "/blog/rss.xml";
+
 /** Stable identifier for the single Person entity used across the site. */
 export const PERSON_ID = `${SITE_URL}/#person`;
 
@@ -40,6 +43,7 @@ export function languageAlternates(
       "pt-BR": ptPath,
       "x-default": enPath,
     },
+    types: { "application/rss+xml": RSS_PATH },
   };
 }
 
@@ -112,18 +116,4 @@ export function profilePageSchema(locale: Language) {
 /** Absolute URL for a localized root-relative path. */
 export function localizedAbsolute(locale: Language, path: string): string {
   return `${SITE_URL}${localizedPath(locale, path)}`;
-}
-
-/** Remove HTML tags and collapse whitespace; optionally truncate. */
-export function stripHtml(html: string, maxLength = 200): string {
-  const text = html
-    // Medium posts open with a cover image whose caption ("Photo by X on
-    // Unsplash") would otherwise become the start of every meta description.
-    .replace(/<figcaption[\s\S]*?<\/figcaption>/gi, " ")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-  if (text.length <= maxLength) return text;
-  return `${text.slice(0, maxLength).trimEnd()}…`;
 }

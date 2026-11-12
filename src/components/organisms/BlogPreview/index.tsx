@@ -1,15 +1,15 @@
 import Button from "@/components/atoms/Button";
 import PostList from "@/components/organisms/PostList";
 import Section from "@/components/organisms/Section";
-import { MediumItem } from "@/components/templates/BlogList";
 import { Language } from "@/contexts/language";
+import { PostMeta } from "@/utils/posts";
 import { localizedPath } from "@/utils/seo";
 
 import { content } from "./translation";
 
 interface BlogPreviewProps {
   locale: Language;
-  posts: MediumItem[];
+  posts: PostMeta[];
 }
 
 export default function BlogPreview({ locale, posts }: BlogPreviewProps) {

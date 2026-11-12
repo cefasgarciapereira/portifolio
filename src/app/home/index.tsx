@@ -7,27 +7,18 @@ import Profile from "@/components/organisms/Profile";
 import Projects from "@/components/organisms/Projects";
 import Resume from "@/components/organisms/Resume";
 import Layout from "@/components/templates/Layout";
-import { fetchMediumItems, MediumItem } from "@/components/templates/BlogList";
 import { Language } from "@/contexts/language";
+import { getPostsForLocale } from "@/utils/posts";
 import { profilePageSchema } from "@/utils/seo";
 
 const LATEST_POSTS_COUNT = 4;
-
-async function fetchLatestPosts(): Promise<MediumItem[]> {
-  try {
-    const items = await fetchMediumItems();
-    return items.slice(0, LATEST_POSTS_COUNT);
-  } catch {
-    return [];
-  }
-}
 
 interface HomeProps {
   locale: Language;
 }
 
-export default async function Home({ locale }: HomeProps) {
-  const posts = await fetchLatestPosts();
+export default function Home({ locale }: HomeProps) {
+  const posts = getPostsForLocale(locale).slice(0, LATEST_POSTS_COUNT);
 
   return (
     <Layout locale={locale}>
