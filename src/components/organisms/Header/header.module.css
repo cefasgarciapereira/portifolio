@@ -24,40 +24,6 @@
   gap: 8px;
 }
 
-.status {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  margin-right: 6px;
-  color: var(--muted);
-  font-family: var(--font-code);
-  font-size: 12px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #2e9e5b;
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-@media (min-width: 720px) {
-  .status {
-    display: inline-flex;
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-
 @keyframes ambientGlitch {
   0%,
   95%,

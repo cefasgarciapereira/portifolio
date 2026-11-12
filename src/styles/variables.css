@@ -69,6 +69,15 @@
   --grain-blend: screen;
   --scan-opacity: 0.45;
   --glow-opacity: 0.2;
+  --code-bg: var(--surface);
+  --code-inline-bg: #1f1f1f;
+  --code-comment: #8f8c87;
+  --code-keyword: #8aa8ff;
+  --code-string: #e8b07c;
+  --code-number: #ff8a5c;
+  --code-title: #f6f4f0;
+  --code-type: #9fd3c7;
+  --code-meta: #c9a6ff;
 }
 
 [data-theme="light"] {
@@ -135,4 +144,13 @@
   --grain-blend: multiply;
   --scan-opacity: 0;
   --glow-opacity: 0;
+  --code-bg: var(--surface);
+  --code-inline-bg: #e6dccd;
+  --code-comment: #6f6760;
+  --code-keyword: #2f5fa0;
+  --code-string: #8a4a16;
+  --code-number: #b0401f;
+  --code-title: #151312;
+  --code-type: #1f6b5c;
+  --code-meta: #6a3fa0;
 }

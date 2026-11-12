@@ -32,9 +32,11 @@ const jetbrainsMono = JetBrains_Mono({
 interface LayoutProps {
   children: ReactNode;
   locale?: Language;
+  /** Where the language toggle should go when the page has its own translations (e.g. a post). */
+  languageLinks?: Partial<Record<Language, string>>;
 }
 
-export default function Layout({ children, locale = "en" }: LayoutProps) {
+export default function Layout({ children, locale = "en", languageLinks }: LayoutProps) {
   const text = content[locale];
 
   return (
@@ -51,7 +53,7 @@ export default function Layout({ children, locale = "en" }: LayoutProps) {
         <a className={styles.skip} href="#content">
           {text.skip}
         </a>
-        <Header locale={locale} />
+        <Header locale={locale} languageLinks={languageLinks} />
         <main id="content">{children}</main>
         <Footer locale={locale} />
         <BottomNav locale={locale} />
