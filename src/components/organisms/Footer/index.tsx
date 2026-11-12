@@ -1,4 +1,5 @@
 import Container from "@/components/atoms/Container";
+import { ConsentPreferencesLink } from "@/components/organisms/ConsentBanner";
 import { Language } from "@/contexts/language";
 
 import { content } from "./translation";
@@ -17,6 +18,7 @@ export default function Footer({ locale }: FooterProps) {
         <span>{`© ${new Date().getFullYear()} Cefas Garcia Pereira`}</span>
         <span>{text.madeWith}</span>
         <span>cefas.me</span>
+        <ConsentPreferencesLink locale={locale} />
       </Container>
     </footer>
   );

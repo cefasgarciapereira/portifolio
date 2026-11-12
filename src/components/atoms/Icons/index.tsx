@@ -78,3 +78,12 @@ export function NextIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function SlidersIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true" {...props}>
+      <path d="M4 6h8M16 6h4M4 12h2M10 12h10M4 18h10M18 18h2" />
+      <path d="M14 4v4M8 10v4M16 16v4" />
+    </svg>
+  );
+}
