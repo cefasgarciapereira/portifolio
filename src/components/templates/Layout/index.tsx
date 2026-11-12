@@ -1,9 +1,11 @@
 import { Archivo, JetBrains_Mono } from "next/font/google";
 import { ReactNode } from "react";
 
+import ConsentScript from "@/components/atoms/ConsentScript";
 import ScreenEffects from "@/components/atoms/ScreenEffects";
 import ThemeScript from "@/components/atoms/ThemeScript";
 import BottomNav from "@/components/organisms/BottomNav";
+import ConsentBanner from "@/components/organisms/ConsentBanner";
 import Footer from "@/components/organisms/Footer";
 import Header from "@/components/organisms/Header";
 import { Language } from "@/contexts/language";
@@ -44,6 +46,7 @@ export default function Layout({ children, locale = "en" }: LayoutProps) {
     >
       <body>
         <ThemeScript />
+        <ConsentScript />
         <ScreenEffects />
         <a className={styles.skip} href="#content">
           {text.skip}
@@ -52,6 +55,7 @@ export default function Layout({ children, locale = "en" }: LayoutProps) {
         <main id="content">{children}</main>
         <Footer locale={locale} />
         <BottomNav locale={locale} />
+        <ConsentBanner locale={locale} />
       </body>
     </html>
   );
