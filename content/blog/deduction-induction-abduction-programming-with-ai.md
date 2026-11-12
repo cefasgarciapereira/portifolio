@@ -95,7 +95,7 @@ Every developer has a mental model of the system they work on, and it is what ma
 
 The lesson, in both cases, is the same one the book draws from science: treat the model as provisional and let the evidence have the last word.
 
-This isn't a sponsored post, but since I've written about the book and recommended it, go [get yourself a copy](https://loja.editoraunicamp.com.br/musica/mentes-maquinas-e-musica-consideracoes-interdisciplinares-sobre-a-ciencia-a-tecnologia-e-a-arte-da-comunicacao-expressiva-musical-717/p) and spread the word about this great book.
+This isn't a sponsored post, but since I've written about it and recommended it, go [get yourself a copy](https://loja.editoraunicamp.com.br/musica/mentes-maquinas-e-musica-consideracoes-interdisciplinares-sobre-a-ciencia-a-tecnologia-e-a-arte-da-comunicacao-expressiva-musical-717/p) and spread the word about this great book.
 
 ---
 
