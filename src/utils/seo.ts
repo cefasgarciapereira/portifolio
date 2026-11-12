@@ -117,6 +117,9 @@ export function localizedAbsolute(locale: Language, path: string): string {
 /** Remove HTML tags and collapse whitespace; optionally truncate. */
 export function stripHtml(html: string, maxLength = 200): string {
   const text = html
+    // Medium posts open with a cover image whose caption ("Photo by X on
+    // Unsplash") would otherwise become the start of every meta description.
+    .replace(/<figcaption[\s\S]*?<\/figcaption>/gi, " ")
     .replace(/<[^>]*>/g, " ")
     .replace(/&nbsp;/g, " ")
     .replace(/\s+/g, " ")
